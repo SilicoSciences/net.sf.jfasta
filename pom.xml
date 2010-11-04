@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>net.sf.kerner-commons</groupId>
 			<artifactId>kerner-commons</artifactId>
-			<version>0.10.1-SNAPSHOT</version>
+			<version>0.10.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
