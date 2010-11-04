@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="JFASTA">
+	<body>
+		<menu name="Overview">
+			<item name="Introduction" href="index.html" />
+			<item name="Download"
+				href="http://sourceforge.net/projects/jfasta/files/" />
+			<item name="JavaDoc"
+				href="http://jfasta.sourceforge.net/apidocs/index.html" />
+		</menu>
+		<menu ref="reports" />
+	</body>
+</project>
