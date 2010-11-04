@@ -135,6 +135,53 @@
 							</execution>
 						</executions>
 					</plugin>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>assembly</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>cobertura-maven-plugin</artifactId>
+						<configuration>
+							<check>
+								<branchRate>70</branchRate>
+								<lineRate>70</lineRate>
+								<haltOnFailure>false</haltOnFailure>
+								<totalBranchRate>70</totalBranchRate>
+								<totalLineRate>70</totalLineRate>
+								<packageLineRate>70</packageLineRate>
+								<packageBranchRate>70</packageBranchRate>
+							</check>
+							<instrumentation>
+								<ignores>
+									
+								</ignores>
+								<excludes>
+									
+								</excludes>
+							</instrumentation>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>clean</goal>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
