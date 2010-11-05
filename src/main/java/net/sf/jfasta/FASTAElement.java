@@ -100,6 +100,11 @@ public interface FASTAElement {
 	 */
 	String toString(boolean includeMethaInfo);
 
+	/**
+	 * Get this {@code FASTAElement}s sequence.
+	 *
+	 * @return {@code String} view of this {@code FASTAElement}s sequence
+	 */
 	String getSequence();
 
 }
