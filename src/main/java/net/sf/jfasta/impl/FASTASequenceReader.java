@@ -1,3 +1,18 @@
+/**********************************************************************
+Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ ***********************************************************************/
+
 package net.sf.jfasta.impl;
 
 import java.io.BufferedReader;
@@ -11,25 +26,51 @@ import net.sf.kerner.commons.io.IOUtils;
 import net.sf.kerner.commons.io.buffered.AbstractBufferedReader;
 import net.sf.kerner.commons.io.buffered.BufferedStringReader;
 
-class FASTASequenceDefaultReader extends AbstractBufferedReader {
+class FASTASequenceReader extends AbstractBufferedReader {
 
 	protected final BufferedStringReader reader2 = new BufferedStringReader(
 			super.reader);
 
-	public FASTASequenceDefaultReader(BufferedReader reader) throws IOException {
+	protected final char[] alphabet;
+	
+	public FASTASequenceReader(BufferedReader reader) throws IOException {
 		super(reader);
+		this.alphabet = null;
 	}
 
-	public FASTASequenceDefaultReader(File file) throws IOException {
+	public FASTASequenceReader(File file) throws IOException {
 		super(file);
+		this.alphabet = null;
 	}
 
-	public FASTASequenceDefaultReader(InputStream stream) throws IOException {
+	public FASTASequenceReader(InputStream stream) throws IOException {
 		super(stream);
+		this.alphabet = null;
 	}
 
-	public FASTASequenceDefaultReader(Reader reader) throws IOException {
+	public FASTASequenceReader(Reader reader) throws IOException {
 		super(reader);
+		this.alphabet = null;
+	}
+	
+	public FASTASequenceReader(BufferedReader reader, char[] alphabet) throws IOException {
+		super(reader);
+		this.alphabet = alphabet;
+	}
+
+	public FASTASequenceReader(File file, char[] alphabet) throws IOException {
+		super(file);
+		this.alphabet = alphabet;
+	}
+
+	public FASTASequenceReader(InputStream stream, char[] alphabet) throws IOException {
+		super(stream);
+		this.alphabet = alphabet;
+	}
+
+	public FASTASequenceReader(Reader reader, char[] alphabet) throws IOException {
+		super(reader);
+		this.alphabet = alphabet;
 	}
 
 	public synchronized StringBuilder nextChars() throws IOException {
@@ -56,6 +97,18 @@ class FASTASequenceDefaultReader extends AbstractBufferedReader {
 			// trim sequence
 			if (Character.isWhitespace(c))
 				continue;
+			
+			if(alphabet != null){
+				// check validity
+				for(char s : alphabet){
+					if(s == c){
+						// matches
+					}
+					else {
+						throw new IllegalArgumentException("Illegal character [" + c + "]");
+					}
+				}
+			}
 
 			// seq end reached
 			if (c == FASTAFile.HEADER_IDENT) {
