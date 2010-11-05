@@ -6,30 +6,60 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
+import de.bioutils.symbol.Alphabet;
+import de.bioutils.symbol.IllegalSymbolException;
+import de.bioutils.symbol.Symbol;
+
 import net.sf.jfasta.FASTAFile;
 import net.sf.kerner.commons.io.IOUtils;
 import net.sf.kerner.commons.io.buffered.AbstractBufferedReader;
 import net.sf.kerner.commons.io.buffered.BufferedStringReader;
 
-class FASTASequenceDefaultReader extends AbstractBufferedReader {
+class FASTASequenceReader extends AbstractBufferedReader {
 
 	protected final BufferedStringReader reader2 = new BufferedStringReader(
 			super.reader);
 
-	public FASTASequenceDefaultReader(BufferedReader reader) throws IOException {
+	protected final Alphabet alphabet;
+	
+	public FASTASequenceReader(BufferedReader reader) throws IOException {
 		super(reader);
+		this.alphabet = null;
 	}
 
-	public FASTASequenceDefaultReader(File file) throws IOException {
+	public FASTASequenceReader(File file) throws IOException {
 		super(file);
+		this.alphabet = null;
 	}
 
-	public FASTASequenceDefaultReader(InputStream stream) throws IOException {
+	public FASTASequenceReader(InputStream stream) throws IOException {
 		super(stream);
+		this.alphabet = null;
 	}
 
-	public FASTASequenceDefaultReader(Reader reader) throws IOException {
+	public FASTASequenceReader(Reader reader) throws IOException {
 		super(reader);
+		this.alphabet = null;
+	}
+	
+	public FASTASequenceReader(BufferedReader reader, Alphabet alphabet) throws IOException {
+		super(reader);
+		this.alphabet = alphabet;
+	}
+
+	public FASTASequenceReader(File file, Alphabet alphabet) throws IOException {
+		super(file);
+		this.alphabet = alphabet;
+	}
+
+	public FASTASequenceReader(InputStream stream, Alphabet alphabet) throws IOException {
+		super(stream);
+		this.alphabet = alphabet;
+	}
+
+	public FASTASequenceReader(Reader reader, Alphabet alphabet) throws IOException {
+		super(reader);
+		this.alphabet = alphabet;
 	}
 
 	public synchronized StringBuilder nextChars() throws IOException {
@@ -56,6 +86,18 @@ class FASTASequenceDefaultReader extends AbstractBufferedReader {
 			// trim sequence
 			if (Character.isWhitespace(c))
 				continue;
+			
+			if(alphabet != null){
+				// check validity
+				for(Symbol s : alphabet){
+					if(s.toChar() == c || s.toCharLowerCase() == c){
+						// matches
+					}
+					else {
+						throw new IllegalSymbolException("Illegal character [" + c + "]");
+					}
+				}
+			}
 
 			// seq end reached
 			if (c == FASTAFile.HEADER_IDENT) {
