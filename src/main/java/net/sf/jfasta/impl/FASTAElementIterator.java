@@ -6,14 +6,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import de.bioutils.symbol.Alphabet;
-
 import net.sf.jfasta.FASTAElement;
 import net.sf.kerner.commons.io.impl.AbstractIOIterator;
 
 public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 	
-	protected final Alphabet alphabet;
+	protected final char[] alphabet;
 
 	public FASTAElementIterator(BufferedReader reader) throws IOException {
 		super(reader);
@@ -35,22 +33,22 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 		this.alphabet = null;
 	}
 	
-	public FASTAElementIterator(BufferedReader reader, Alphabet alphabet) throws IOException {
+	public FASTAElementIterator(BufferedReader reader, char[] alphabet) throws IOException {
 		super(reader);
 		this.alphabet = alphabet;
 	}
 
-	public FASTAElementIterator(File file, Alphabet alphabet) throws IOException {
+	public FASTAElementIterator(File file, char[] alphabet) throws IOException {
 		super(file);
 		this.alphabet = alphabet;
 	}
 
-	public FASTAElementIterator(InputStream stream, Alphabet alphabet) throws IOException {
+	public FASTAElementIterator(InputStream stream, char[] alphabet) throws IOException {
 		super(stream);
 		this.alphabet = alphabet;
 	}
 
-	public FASTAElementIterator(Reader reader, Alphabet alphabet) throws IOException {
+	public FASTAElementIterator(Reader reader, char[] alphabet) throws IOException {
 		super(reader);
 		this.alphabet = alphabet;
 	}

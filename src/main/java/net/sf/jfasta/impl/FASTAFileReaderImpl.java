@@ -8,8 +8,6 @@ import java.io.Reader;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
-import de.bioutils.symbol.Alphabet;
-
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
 import net.sf.jfasta.FASTAFileReader;
@@ -17,7 +15,7 @@ import net.sf.kerner.commons.io.buffered.AbstractBufferedReader;
 
 public class FASTAFileReaderImpl extends AbstractBufferedReader implements FASTAFileReader{
 	
-	protected final Alphabet alphabet;
+	protected final char[] alphabet;
 
 	public FASTAFileReaderImpl(BufferedReader reader) {
 		super(reader);
@@ -39,22 +37,22 @@ public class FASTAFileReaderImpl extends AbstractBufferedReader implements FASTA
 		this.alphabet = null;
 	}
 
-	public FASTAFileReaderImpl(Reader reader, Alphabet alphabet) {
+	public FASTAFileReaderImpl(Reader reader, char[] alphabet) {
 		super(reader);
 		this.alphabet = alphabet;
 	}
 	
-	public FASTAFileReaderImpl(BufferedReader reader, Alphabet alphabet) {
+	public FASTAFileReaderImpl(BufferedReader reader, char[] alphabet) {
 		super(reader);
 		this.alphabet = alphabet;
 	}
 
-	public FASTAFileReaderImpl(File file, Alphabet alphabet) throws IOException {
+	public FASTAFileReaderImpl(File file, char[] alphabet) throws IOException {
 		super(file);
 		this.alphabet = alphabet;
 	}
 
-	public FASTAFileReaderImpl(InputStream stream, Alphabet alphabet) {
+	public FASTAFileReaderImpl(InputStream stream, char[] alphabet) {
 		super(stream);
 		this.alphabet = alphabet;
 	}

@@ -62,11 +62,6 @@
 			<version>4.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>net.sf.bioutils</groupId>
-			<artifactId>bioutils</artifactId>
-			<version>0.8.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

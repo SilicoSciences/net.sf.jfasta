@@ -6,10 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import de.bioutils.symbol.Alphabet;
-import de.bioutils.symbol.IllegalSymbolException;
-import de.bioutils.symbol.Symbol;
-
 import net.sf.jfasta.FASTAFile;
 import net.sf.kerner.commons.io.IOUtils;
 import net.sf.kerner.commons.io.buffered.AbstractBufferedReader;
@@ -20,7 +16,7 @@ class FASTASequenceReader extends AbstractBufferedReader {
 	protected final BufferedStringReader reader2 = new BufferedStringReader(
 			super.reader);
 
-	protected final Alphabet alphabet;
+	protected final char[] alphabet;
 	
 	public FASTASequenceReader(BufferedReader reader) throws IOException {
 		super(reader);
@@ -42,22 +38,22 @@ class FASTASequenceReader extends AbstractBufferedReader {
 		this.alphabet = null;
 	}
 	
-	public FASTASequenceReader(BufferedReader reader, Alphabet alphabet) throws IOException {
+	public FASTASequenceReader(BufferedReader reader, char[] alphabet) throws IOException {
 		super(reader);
 		this.alphabet = alphabet;
 	}
 
-	public FASTASequenceReader(File file, Alphabet alphabet) throws IOException {
+	public FASTASequenceReader(File file, char[] alphabet) throws IOException {
 		super(file);
 		this.alphabet = alphabet;
 	}
 
-	public FASTASequenceReader(InputStream stream, Alphabet alphabet) throws IOException {
+	public FASTASequenceReader(InputStream stream, char[] alphabet) throws IOException {
 		super(stream);
 		this.alphabet = alphabet;
 	}
 
-	public FASTASequenceReader(Reader reader, Alphabet alphabet) throws IOException {
+	public FASTASequenceReader(Reader reader, char[] alphabet) throws IOException {
 		super(reader);
 		this.alphabet = alphabet;
 	}
@@ -89,12 +85,12 @@ class FASTASequenceReader extends AbstractBufferedReader {
 			
 			if(alphabet != null){
 				// check validity
-				for(Symbol s : alphabet){
-					if(s.toChar() == c || s.toCharLowerCase() == c){
+				for(char s : alphabet){
+					if(s == c){
 						// matches
 					}
 					else {
-						throw new IllegalSymbolException("Illegal character [" + c + "]");
+						throw new IllegalArgumentException("Illegal character [" + c + "]");
 					}
 				}
 			}
