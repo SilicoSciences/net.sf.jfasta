@@ -152,13 +152,13 @@ public class TestFASTAFileReaderImpl {
 	 */
 	@Test
 	public final void testRead03() throws IOException {
-		final File file = new File("src/test/resources/fasta02.fasta");
+		final File file = new File("src/test/resources/seq.100m.txt");
 		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE_STRICT);
 		long start = System.currentTimeMillis();
 		final FASTAFile fasta = reader.read();
 		long stop = System.currentTimeMillis();
 		
-		log.debug("reading small fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (including content checking)");
+		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (including content checking case insensitive)");
 
 	}
 	
@@ -169,13 +169,44 @@ public class TestFASTAFileReaderImpl {
 	 */
 	@Test
 	public final void testRead04() throws IOException {
-		final File file = new File("src/test/resources/fasta02.fasta");
+		final File file = new File("src/test/resources/seq.100m.txt");
+		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_STRICT);
+		long start = System.currentTimeMillis();
+		final FASTAFile fasta = reader.read();
+		long stop = System.currentTimeMillis();
+		
+		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (including content checking case sensitive)");
+
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAFileReaderImpl#read()}.
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public final void testRead05() throws IOException {
+		final File file = new File("src/test/resources/seq.100m.txt");
 		final FASTAFileReader reader = new FASTAFileReaderImpl(file);
 		long start = System.currentTimeMillis();
 		final FASTAFile fasta = reader.read();
 		long stop = System.currentTimeMillis();
 		
-		log.debug("reading small fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (without content checking)");
+		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (without content checking)");
 
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAFileReaderImpl#read()}.
+	 * 
+	 * @throws IOException
+	 */
+	@Test(expected=IllegalArgumentException.class)
+	public final void testRead06() throws IOException {
+		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC"
+				+ IOUtils.NEW_LINE_STRING + ">header2"
+				+ IOUtils.NEW_LINE_STRING + "AX";
+		new FASTAFileReaderImpl(new StringReader(in),FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE_STRICT)
+				.read();
 	}
 }
