@@ -19,6 +19,13 @@ import java.io.IOException;
 
 import net.sf.kerner.commons.io.buffered.IOIterable;
 
+/**
+ * A {@code FASTAFileReader} is used to read a FASTA file.
+ *
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2010-11-06
+ *
+ */
 public interface FASTAFileReader extends IOIterable<FASTAElement> {
 	
 	/**
@@ -35,7 +42,7 @@ public interface FASTAFileReader extends IOIterable<FASTAElement> {
 	 * Use this with care, since FASTA files can be huge!
 	 * </p>
 	 *
-	 * @return {@link FASTAFile} that has been read
+	 * @return {@link net.sf.jfasta.FASTAFile FASTAFile} that has been read
 	 * 
 	 * @throws IOException
 	 */

@@ -31,7 +31,7 @@ package net.sf.jfasta;
  * 
  * @autor <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-11-04
- * @see FASTAFile
+ * @see net.sf.jfasta.FASTAFile FASTAFile
  * 
  */
 public interface FASTAElement {
@@ -39,8 +39,9 @@ public interface FASTAElement {
 	/**
 	 * 
 	 * Retrieve this {@code FASTAElement}'s header string. Meaning string
-	 * starting right after {@link FASTAFile#HEADER_IDENT} and continuing until
-	 * first subsequent {@link net.sf.kerner.commons.io.IOUtils#NEW_LINE_STRING}
+	 * starting right after {@link net.sf.kerner.commons.FASTAFile#HEADER_IDENT
+	 * HEADER_IDENT} and continuing until first subsequent
+	 * {@link net.sf.kerner.commons.io.IOUtils#NEW_LINE_STRING NEW_LINE_STRING}
 	 * 
 	 * @return this {@code FASTAElement}'s header string
 	 */
@@ -49,8 +50,9 @@ public interface FASTAElement {
 	/**
 	 * 
 	 * Retrieve this {@code FASTAElement}'s header string. Meaning string
-	 * starting right after {@link FASTAFile#HEADER_IDENT} and continuing until
-	 * first subsequent {@link net.sf.kerner.commons.io.IOUtils#NEW_LINE_STRING}
+	 * starting right after {@link net.sf.kerner.commons.FASTAFile#HEADER_IDENT
+	 * HEADER_IDENT} and continuing until first subsequent
+	 * {@link net.sf.kerner.commons.io.IOUtils#NEW_LINE_STRING NEW_LINE_STRING}
 	 * 
 	 * @return this {@code FASTAElement}'s header string, including meta
 	 *         information
@@ -63,8 +65,8 @@ public interface FASTAElement {
 	 * Set this {@code FASTAElement}'s default line length. When invoking
 	 * {@link #toString()} or {@link #toString(boolean)} after {@code length}
 	 * characters written to one line, a
-	 * {@link net.sf.kerner.commons.io.IOUtils#NEW_LINE_STRING} will be
-	 * appended.
+	 * {@link net.sf.kerner.commons.io.IOUtils#NEW_LINE_STRING NEW_LINE_STRING}
+	 * will be appended.
 	 * 
 	 * @param length
 	 *            the new default line length
@@ -102,7 +104,7 @@ public interface FASTAElement {
 
 	/**
 	 * Get this {@code FASTAElement}s sequence.
-	 *
+	 * 
 	 * @return {@code String} view of this {@code FASTAElement}s sequence
 	 */
 	String getSequence();
