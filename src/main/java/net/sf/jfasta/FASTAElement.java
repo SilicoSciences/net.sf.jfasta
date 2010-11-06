@@ -29,7 +29,7 @@ package net.sf.jfasta;
  * 
  * </p>
  * 
- * @autor <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-11-04
  * @see net.sf.jfasta.FASTAFile FASTAFile
  * 
@@ -39,7 +39,7 @@ public interface FASTAElement {
 	/**
 	 * 
 	 * Retrieve this {@code FASTAElement}'s header string. Meaning string
-	 * starting right after {@link net.sf.kerner.commons.FASTAFile#HEADER_IDENT
+	 * starting right after {@link net.sf.jfasta.FASTAFile#HEADER_IDENT
 	 * HEADER_IDENT} and continuing until first subsequent
 	 * {@link net.sf.kerner.commons.io.IOUtils#NEW_LINE_STRING NEW_LINE_STRING}
 	 * 
@@ -50,7 +50,7 @@ public interface FASTAElement {
 	/**
 	 * 
 	 * Retrieve this {@code FASTAElement}'s header string. Meaning string
-	 * starting right after {@link net.sf.kerner.commons.FASTAFile#HEADER_IDENT
+	 * starting right after {@link  net.sf.jfasta.FASTAFile#HEADER_IDENT
 	 * HEADER_IDENT} and continuing until first subsequent
 	 * {@link net.sf.kerner.commons.io.IOUtils#NEW_LINE_STRING NEW_LINE_STRING}
 	 * 
