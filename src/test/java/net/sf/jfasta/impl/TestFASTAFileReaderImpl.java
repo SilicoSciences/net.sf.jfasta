@@ -7,6 +7,7 @@ package net.sf.jfasta.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -14,7 +15,10 @@ import java.util.List;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
+import net.sf.jfasta.FASTAFileReader;
 import net.sf.kerner.commons.io.IOUtils;
+import net.sf.kerner.commons.logging.Log;
+import net.sf.kerner.commons.monitor.TimePeriod;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -27,11 +31,13 @@ import org.junit.Test;
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-10-04
+ * @version 2010-10-06
  * 
  */
 public class TestFASTAFileReaderImpl {
 
+	private Log log = new Log(TestFASTAFileReaderImpl.class);
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -108,7 +114,7 @@ public class TestFASTAFileReaderImpl {
 	 * @throws IOException
 	 */
 	@Test
-	public final void testGet() throws IOException {
+	public final void testRead() throws IOException {
 		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC";
 		final FASTAFile fasta = new FASTAFileReaderImpl(new StringReader(in))
 				.read();
@@ -126,7 +132,7 @@ public class TestFASTAFileReaderImpl {
 	 * @throws IOException
 	 */
 	@Test
-	public final void testGet01() throws IOException {
+	public final void testRead01() throws IOException {
 		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC"
 				+ IOUtils.NEW_LINE_STRING + ">header2"
 				+ IOUtils.NEW_LINE_STRING + "AA";
@@ -138,23 +144,38 @@ public class TestFASTAFileReaderImpl {
 		assertEquals("header", elements.get(0).getHeader());
 		assertEquals("ATGC", elements.get(0).getSequence());
 	}
-
+	
 	/**
 	 * Test method for {@link net.sf.jfasta.impl.FASTAFileReaderImpl#read()}.
 	 * 
 	 * @throws IOException
 	 */
 	@Test
-	public final void testGet02() throws IOException {
-		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC"
-				+ IOUtils.NEW_LINE_STRING + ">header2"
-				+ IOUtils.NEW_LINE_STRING + "ATGC";
-
-		final FASTAElementIterator it = new FASTAFileReaderImpl(new StringReader(in)).getIterator();
+	public final void testRead03() throws IOException {
+		final File file = new File("src/test/resources/fasta02.fasta");
+		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE_STRICT);
+		long start = System.currentTimeMillis();
+		final FASTAFile fasta = reader.read();
+		long stop = System.currentTimeMillis();
 		
-		while(it.hasNext()){
-			assertEquals("ATGC", it.next().getSequence());
-		}
+		log.debug("reading small fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (including content checking)");
+
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAFileReaderImpl#read()}.
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public final void testRead04() throws IOException {
+		final File file = new File("src/test/resources/fasta02.fasta");
+		final FASTAFileReader reader = new FASTAFileReaderImpl(file);
+		long start = System.currentTimeMillis();
+		final FASTAFile fasta = reader.read();
+		long stop = System.currentTimeMillis();
+		
+		log.debug("reading small fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (without content checking)");
 
 	}
 }

@@ -199,7 +199,11 @@ public class TestFASTAElementImpl {
 	 */
 	@Test
 	public final void testClearMethaInfo() {
-		fail("Not yet implemented"); // TODO
+		final Map<String,Serializable> meta = new LinkedHashMap<String, Serializable>();
+		meta.put("meta", "value");
+		el = new FASTAElementImpl("header", "seq", meta);
+		el.clearMethaInfo();
+		assertEquals(">header" + IOUtils.NEW_LINE_STRING + el.getSequence(), el.toString(true));
 	}
 
 	/**
@@ -207,7 +211,10 @@ public class TestFASTAElementImpl {
 	 */
 	@Test
 	public final void testGetMethaInfoString() {
-		fail("Not yet implemented"); // TODO
+		final Map<String,Serializable> meta = new LinkedHashMap<String, Serializable>();
+		meta.put("meta", "value");
+		el = new FASTAElementImpl("header", "seq", meta);
+		assertEquals("value",el.getMethaInfo("meta"));
 	}
 
 	/**
@@ -215,7 +222,10 @@ public class TestFASTAElementImpl {
 	 */
 	@Test
 	public final void testGetMethaInfo() {
-		fail("Not yet implemented"); // TODO
+		final Map<String,Serializable> meta = new LinkedHashMap<String, Serializable>();
+		meta.put("meta", "value");
+		el = new FASTAElementImpl("header", "seq", meta);
+		assertEquals(meta,el.getMethaInfo());
 	}
 
 	/**
@@ -223,7 +233,11 @@ public class TestFASTAElementImpl {
 	 */
 	@Test
 	public final void testSetMethaInfoStringSerializable() {
-		fail("Not yet implemented"); // TODO
+		final Map<String,Serializable> meta = new LinkedHashMap<String, Serializable>();
+		meta.put("meta", "value");
+		el = new FASTAElementImpl("header", "seq");
+		el.setMethaInfo("meta", "value");
+		assertEquals(meta,el.getMethaInfo());
 	}
 
 	/**
@@ -231,13 +245,18 @@ public class TestFASTAElementImpl {
 	 */
 	@Test
 	public final void testSetMethaInfoMapOfStringSerializable() {
-		fail("Not yet implemented"); // TODO
+		final Map<String,Serializable> meta = new LinkedHashMap<String, Serializable>();
+		meta.put("meta", "value");
+		el = new FASTAElementImpl("header", "seq");
+		el.setMethaInfo(meta);
+		assertEquals(meta,el.getMethaInfo());
 	}
 
 	/**
 	 * Test method for {@link net.sf.jfasta.impl.FASTAElementImpl#getSequenceLength()}.
 	 */
 	@Test
+	@Ignore
 	public final void testGetSequenceLength() {
 		fail("Not yet implemented"); // TODO
 	}
