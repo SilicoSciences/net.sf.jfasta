@@ -32,7 +32,7 @@ class FASTASequenceReader extends AbstractBufferedReader {
 			super.reader);
 
 	protected final char[] alphabet;
-	
+
 	public FASTASequenceReader(BufferedReader reader) throws IOException {
 		super(reader);
 		this.alphabet = null;
@@ -52,8 +52,9 @@ class FASTASequenceReader extends AbstractBufferedReader {
 		super(reader);
 		this.alphabet = null;
 	}
-	
-	public FASTASequenceReader(BufferedReader reader, char[] alphabet) throws IOException {
+
+	public FASTASequenceReader(BufferedReader reader, char[] alphabet)
+			throws IOException {
 		super(reader);
 		this.alphabet = alphabet;
 	}
@@ -63,12 +64,14 @@ class FASTASequenceReader extends AbstractBufferedReader {
 		this.alphabet = alphabet;
 	}
 
-	public FASTASequenceReader(InputStream stream, char[] alphabet) throws IOException {
+	public FASTASequenceReader(InputStream stream, char[] alphabet)
+			throws IOException {
 		super(stream);
 		this.alphabet = alphabet;
 	}
 
-	public FASTASequenceReader(Reader reader, char[] alphabet) throws IOException {
+	public FASTASequenceReader(Reader reader, char[] alphabet)
+			throws IOException {
 		super(reader);
 		this.alphabet = alphabet;
 	}
@@ -97,17 +100,19 @@ class FASTASequenceReader extends AbstractBufferedReader {
 			// trim sequence
 			if (Character.isWhitespace(c))
 				continue;
-			
-			if(alphabet != null){
+
+			if (alphabet != null) {
 				// check validity
-				for(char s : alphabet){
-					if(s == c){
+				boolean ok = false;
+				for (char s : alphabet) {
+					if (s == c) {
 						// matches
-					}
-					else {
-						throw new IllegalArgumentException("Illegal character [" + c + "]");
+						ok = true;
+						break;
 					}
 				}
+				if(!ok)
+					throw new IllegalArgumentException("Illegal character [" + c + "]");
 			}
 
 			// seq end reached
