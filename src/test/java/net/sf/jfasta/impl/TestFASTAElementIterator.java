@@ -169,6 +169,21 @@ public class TestFASTAElementIterator {
 			assertEquals("ATGC", it.next().getSequence());
 		}
 	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAElementIterator#next()}.
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public final void testNext01() throws IOException {
+		final String in = ">header";
+
+		final FASTAElementIterator it = new FASTAFileReaderImpl(
+				new StringReader(in)).getIterator();
+
+			assertFalse(it.hasNext());
+	}
 
 	// START SNIPPET: example_1
 
