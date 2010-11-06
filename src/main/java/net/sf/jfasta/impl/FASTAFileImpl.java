@@ -37,6 +37,10 @@ public class FASTAFileImpl implements FASTAFile {
 		
 	}
 	
+	public FASTAFileImpl(FASTAElement element) {
+		this.elements.add(element);
+	}
+	
 	public FASTAFileImpl(Collection<? extends FASTAElement> elements) {
 		this.elements.addAll(elements);
 	}
