@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import net.sf.jfasta.FASTAFile;
 import net.sf.kerner.commons.io.IOUtils;
 
 import org.junit.After;
@@ -169,7 +170,8 @@ public class TestFASTAElementImpl {
 	 */
 	@Test
 	public final void testGetLineLength() {
-		fail("Not yet implemented"); // TODO
+		el = new FASTAElementImpl("header", "seq");
+		assertEquals(FASTAFile.DEFAULT_LINE_LENGTH, el.getLineLength());
 	}
 
 	/**
@@ -177,7 +179,19 @@ public class TestFASTAElementImpl {
 	 */
 	@Test
 	public final void testSetLineLength() {
-		fail("Not yet implemented"); // TODO
+		el = new FASTAElementImpl("header", "seq");
+		el.setLineLength(2);
+		assertEquals(2, el.getLineLength());
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAElementImpl#setLineLength(int)}.
+	 */
+	@Test
+	public final void testSetLineLength01() {
+		el = new FASTAElementImpl("header", "seq");
+		el.setLineLength(2);
+		assertEquals(">header" + IOUtils.NEW_LINE_STRING + "se" + IOUtils.NEW_LINE_STRING + "q", el.toString());
 	}
 
 	/**
