@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document>
+	<properties>
+		<author email="alex.kerner.24@googlemail.com">Alexander Kerner</author>
+		<title>Java Implementation for the FASTA format</title>
+	</properties>
+	<head>
+		<meta />
+	</head>
+	<body>
+		<section name="Example1: Read in a multi FASTA file">
+			<macro name="snippet">
+				<param name="id" value="example_1" />
+				<param name="file"
+					value="src/test/java/net/sf/jfasta/impl/TestFASTAElementIterator.java" />
+			</macro>
+		</section>
+		<section name="Example2: Read in a multi FASTA file">
+			<macro name="snippet">
+				<param name="id" value="example_2" />
+				<param name="file"
+					value="src/test/java/net/sf/jfasta/impl/TestFASTAElementIterator.java" />
+			</macro>
+		</section>
+	</body>
+</document>

@@ -5,9 +5,12 @@ package net.sf.jfasta.impl;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 
+import net.sf.jfasta.FASTAElement;
+import net.sf.jfasta.FASTAFileReader;
 import net.sf.kerner.commons.io.IOUtils;
 
 import org.junit.After;
@@ -167,4 +170,57 @@ public class TestFASTAElementIterator {
 		}
 	}
 
+	// START SNIPPET: example_1
+
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAElementIterator#next()}.
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public final void testExample1() throws IOException {
+
+		// Read a multi FASTA file element by element.
+
+		final File file = new File("src/test/resources/fasta02.fasta");
+
+		final FASTAFileReader reader = new FASTAFileReaderImpl(file);
+
+		final FASTAElementIterator it = reader.getIterator();
+
+		while (it.hasNext()) {
+			FASTAElement el = it.next();
+			assertTrue(el.getHeader().contains("Homo sapiens spastin (SPAST)"));
+		}
+	}
+
+	// END SNIPPET: example_1
+
+	// START SNIPPET: example_2
+
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAElementIterator#next()}.
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public final void testExample2() throws IOException {
+
+		// Read a multi FASTA file element by element. Throw an exception, if
+		// FASTA sequence contains characters that are invalid for a DNA
+		// sequence.
+
+		final File file = new File("src/test/resources/fasta02.fasta");
+
+		final FASTAFileReader reader = new FASTAFileReaderImpl(file,
+				FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE);
+
+		final FASTAElementIterator it = reader.getIterator();
+
+		while (it.hasNext()) {
+			FASTAElement el = it.next();
+			assertTrue(el.getHeader().contains("Homo sapiens spastin (SPAST)"));
+		}
+	}
+	// END SNIPPET: example_2
 }
