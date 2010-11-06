@@ -17,6 +17,7 @@ package net.sf.jfasta;
 
 import java.io.IOException;
 
+import net.sf.jfasta.impl.FASTAElementIterator;
 import net.sf.kerner.commons.io.buffered.IOIterable;
 
 /**
@@ -47,5 +48,7 @@ public interface FASTAFileReader extends IOIterable<FASTAElement> {
 	 * @throws IOException
 	 */
 	FASTAFile read() throws IOException;
+	
+	FASTAElementIterator getIterator() throws IOException;
 
 }
