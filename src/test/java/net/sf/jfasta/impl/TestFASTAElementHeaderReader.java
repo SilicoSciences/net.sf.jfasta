@@ -93,6 +93,15 @@ public class TestFASTAElementHeaderReader {
 	public final void testReadReader03() throws IOException {
 		assertNull(reader.read(new StringReader("")));
 	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAElementHeaderReader#read(java.io.Reader)}.
+	 * @throws IOException 
+	 */
+	@Test
+	public final void testReadReader04() throws IOException {
+		assertNull(reader.read(new StringReader("bla")));
+	}
 
 	/**
 	 * Test method for {@link net.sf.jfasta.impl.FASTAElementHeaderReader#read(java.io.BufferedReader)}.
