@@ -35,7 +35,7 @@ class FASTAElementHeaderReader {
 		String s = new BufferedStringReader(reader).nextLine();
 		if (s == null)
 			return null;
-		s = s.trim();
+		s = s.trim();		
 		if (s.startsWith(Character.toString(FASTAFile.HEADER_IDENT)))
 			return s.substring(1);
 		System.err.println("failed to get header from " + s);
