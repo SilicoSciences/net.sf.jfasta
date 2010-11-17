@@ -3,7 +3,10 @@
  */
 package net.sf.jfasta.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -183,6 +186,43 @@ public class TestFASTAElementIterator {
 				new StringReader(in)).getIterator();
 
 			assertFalse(it.hasNext());
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAElementIterator#next()}.
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public final void testNext02() throws IOException {
+		final String in = ">header [a=b c=d]" + IOUtils.NEW_LINE_STRING + "seq";
+
+		final FASTAElementIterator it = new FASTAFileReaderImpl(
+				new StringReader(in)).getIterator();
+
+		
+		
+		final FASTAElement el = it.next();
+		assertEquals("header", el.getHeader(false));
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAElementIterator#next()}.
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public final void testNext03() throws IOException {
+		final String in = ">header [a=b c=d]" + IOUtils.NEW_LINE_STRING + "seq";
+
+		final FASTAElementIterator it = new FASTAFileReaderImpl(
+				new StringReader(in)).getIterator();
+
+		
+		
+		final FASTAElement el = it.next();
+//		System.err.println(el.getHeader(true));
+		assertEquals("header [a=b c=d]", el.getHeader(true));
 	}
 
 	// START SNIPPET: example_1

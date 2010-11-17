@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 
 import net.sf.jfasta.FASTAElement;
+import net.sf.jfasta.FASTAFile;
 import net.sf.kerner.commons.io.IOUtils;
 
 import org.junit.After;
@@ -94,10 +95,10 @@ public class TestFASTAFileImpl {
 	 */
 	@Test
 	public final void testToString() {
-		el1 = new FASTAElementImpl("header [hans=peter]", "seq");
+		el1 = new FASTAElementImpl("header", "seq");
 		el2 = new FASTAElementImpl("header2", "seqq");
 		file1 = new FASTAFileImpl(Arrays.asList(el1, el2));
-		assertEquals(">header [hans=peter]" + IOUtils.NEW_LINE_STRING + "seq" + IOUtils.NEW_LINE_STRING + ">header2" + IOUtils.NEW_LINE_STRING + "seqq", file1.toString());
+		assertEquals(">header" + IOUtils.NEW_LINE_STRING + "seq" + IOUtils.NEW_LINE_STRING + ">header2" + IOUtils.NEW_LINE_STRING + "seqq", file1.toString());
 	}
 
 	/**
@@ -138,12 +139,25 @@ public class TestFASTAFileImpl {
 	 */
 	@Test
 	public final void testToStringBoolean() {
-		el1 = new FASTAElementImpl("header [hans=peter]", "seq");
+		el1 = new FASTAElementImpl("header", "seq");
 		el2 = new FASTAElementImpl("header2", "seqq");
 		file1 = new FASTAFileImpl(Arrays.asList(el1, el2));
 		assertEquals(">header" + IOUtils.NEW_LINE_STRING + "seq"
 				+ IOUtils.NEW_LINE_STRING + ">header2"
 				+ IOUtils.NEW_LINE_STRING + "seqq", file1.toString(false));
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#toString(boolean)}.
+	 */
+	@Test
+	public final void testToStringBoolean01() {
+		el1 = new FASTAElementImpl("header", "seq");
+		el2 = new FASTAElementImpl("header2", "seqq");
+		file1 = new FASTAFileImpl(Arrays.asList(el1, el2));
+		assertEquals(">header" + IOUtils.NEW_LINE_STRING + "seq"
+				+ IOUtils.NEW_LINE_STRING + ">header2"
+				+ IOUtils.NEW_LINE_STRING + "seqq", file1.toString(true));
 	}
 
 	/**
@@ -151,7 +165,7 @@ public class TestFASTAFileImpl {
 	 */
 	@Test
 	public final void testGetLineLength() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(FASTAFile.DEFAULT_LINE_LENGTH, new FASTAFileImpl().getLineLength());
 	}
 
 	/**
@@ -159,13 +173,16 @@ public class TestFASTAFileImpl {
 	 */
 	@Test
 	public final void testSetLineLength() {
-		fail("Not yet implemented"); // TODO
+		file1 = new FASTAFileImpl();
+		file1.setLineLength(50);
+		assertEquals(50, file1.getLineLength());
 	}
 
 	/**
 	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#add(net.sf.jfasta.FASTAElement)}.
 	 */
 	@Test
+	@Ignore("Simple delegate")
 	public final void testAdd() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -174,6 +191,7 @@ public class TestFASTAFileImpl {
 	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#addAll(java.util.Collection)}.
 	 */
 	@Test
+	@Ignore("Simple delegate")
 	public final void testAddAll() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -182,6 +200,7 @@ public class TestFASTAFileImpl {
 	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#clear()}.
 	 */
 	@Test
+	@Ignore("Simple delegate")
 	public final void testClear() {
 		el1 = new FASTAElementImpl("header", "seq");
 		el2 = new FASTAElementImpl("header2", "seqq");
@@ -194,6 +213,7 @@ public class TestFASTAFileImpl {
 	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#contains(java.lang.Object)}.
 	 */
 	@Test
+	@Ignore("Simple delegate")
 	public final void testContains() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -202,6 +222,7 @@ public class TestFASTAFileImpl {
 	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#containsAll(java.util.Collection)}.
 	 */
 	@Test
+	@Ignore("Simple delegate")
 	public final void testContainsAll() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -210,7 +231,7 @@ public class TestFASTAFileImpl {
 	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#isEmpty()}.
 	 */
 	@Test
-	@Ignore
+	@Ignore("Simple delegate")
 	public final void testIsEmpty() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -219,6 +240,7 @@ public class TestFASTAFileImpl {
 	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#remove(java.lang.Object)}.
 	 */
 	@Test
+	@Ignore("Simple delegate")
 	public final void testRemove() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -227,6 +249,7 @@ public class TestFASTAFileImpl {
 	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#removeAll(java.util.Collection)}.
 	 */
 	@Test
+	@Ignore("Simple delegate")
 	public final void testRemoveAll() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -235,6 +258,7 @@ public class TestFASTAFileImpl {
 	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#retainAll(java.util.Collection)}.
 	 */
 	@Test
+	@Ignore("Simple delegate")
 	public final void testRetainAll() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -244,7 +268,18 @@ public class TestFASTAFileImpl {
 	 */
 	@Test
 	public final void testSize() {
-		fail("Not yet implemented"); // TODO
+		el1 = new FASTAElementImpl("header", "seq");
+		file1 = new FASTAFileImpl(el1);
+		assertEquals(1, file1.size());
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAFileImpl#size()}.
+	 */
+	@Test
+	public final void testSize01() {
+		file1 = new FASTAFileImpl();
+		assertEquals(0, file1.size());
 	}
 
 	/**

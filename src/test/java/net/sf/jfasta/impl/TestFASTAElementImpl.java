@@ -5,7 +5,9 @@ package net.sf.jfasta.impl;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.io.StringReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -145,6 +147,18 @@ public class TestFASTAElementImpl {
 		meta.put("meta", "value");
 		el = new FASTAElementImpl("header", "seq", meta);
 		assertEquals(">header" + IOUtils.NEW_LINE_STRING + el.getSequence(), el.toString(false));
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAElementImpl#toString(boolean)}.
+	 * @throws IOException 
+	 */
+	@Test
+	public final void testToStringBoolean01() throws IOException {
+		final Map<String,Serializable> meta = new LinkedHashMap<String, Serializable>();
+		meta.put("meta", "value");
+		el = new FASTAElementImpl(new FASTAElementHeaderReader().read(new StringReader(">header [meta=value]")), "seq");
+		assertEquals(">header [meta=value]" + IOUtils.NEW_LINE_STRING + el.getSequence(), el.toString(true));
 	}
 
 	/**
