@@ -127,13 +127,21 @@ public class FASTAElementImpl implements FASTAElement {
 		if(!includeMethaInfo)
 			return header;
 		StringBuilder sb = new StringBuilder();
+		if(getMethaInfo().isEmpty()){
+			return header;
+		} 
+		
 		sb.append(" ");
+		sb.append("[");
 		for(Entry<String, Serializable> e : getMethaInfo().entrySet()){
-			sb.append("[");
 			sb.append(e);
-			sb.append("]");
 			sb.append(" ");
 		}
+//		System.err.println(sb);
+		sb.deleteCharAt(sb.length()-1);
+		sb.append("]");
+//		System.err.println(sb);
+		
 		return (header + sb.toString()).trim();
 	}
 
