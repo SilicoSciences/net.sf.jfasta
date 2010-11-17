@@ -20,12 +20,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.kerner.commons.io.impl.AbstractIOIterator;
 
 public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
-	
+
 	protected final char[] alphabet;
 
 	public FASTAElementIterator(BufferedReader reader) throws IOException {
@@ -47,8 +50,9 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 		super(reader);
 		this.alphabet = null;
 	}
-	
-	public FASTAElementIterator(BufferedReader reader, char[] alphabet) throws IOException {
+
+	public FASTAElementIterator(BufferedReader reader, char[] alphabet)
+			throws IOException {
 		super(reader);
 		this.alphabet = alphabet;
 	}
@@ -58,27 +62,46 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 		this.alphabet = alphabet;
 	}
 
-	public FASTAElementIterator(InputStream stream, char[] alphabet) throws IOException {
+	public FASTAElementIterator(InputStream stream, char[] alphabet)
+			throws IOException {
 		super(stream);
 		this.alphabet = alphabet;
 	}
 
-	public FASTAElementIterator(Reader reader, char[] alphabet) throws IOException {
+	public FASTAElementIterator(Reader reader, char[] alphabet)
+			throws IOException {
 		super(reader);
 		this.alphabet = alphabet;
 	}
-	
+
 	protected FASTAElement doRead() throws IOException {
-		final String header = new FASTAElementHeaderReader().read(super.reader);
+		String header = new FASTAElementHeaderReader().read(super.reader);
 		if (header == null)
 			return null;
+
+		final Map<String, Serializable> map = new LinkedHashMap<String, Serializable>();
+		
+		if (header.contains("[")) {
+			final int start = header.indexOf('[');
+			final int stop = header.indexOf(']');
+			final String meta = header.substring(start+1, stop);
+//			System.err.println(meta);
+			final String[] arr = meta.split(" ");
+			for (String a : arr) {
+				final String[] brr = a.split("=");
+				map.put(brr[0], brr[1]);
+			}
+			header = header.substring(0, start-1);
+		}
+
 		final StringBuilder seq = getSequence();
 		if (seq == null) {
 			System.err.println("invalid fasta element [" + header + "]");
 			return null;
 		}
 		seq.trimToSize();
-		return new FASTAElementImpl(header, seq);
+		
+		return new FASTAElementImpl(header, seq, map);
 	}
 
 	private StringBuilder getSequence() throws IOException {
