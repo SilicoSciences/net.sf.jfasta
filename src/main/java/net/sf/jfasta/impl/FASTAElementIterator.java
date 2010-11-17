@@ -77,6 +77,7 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 			System.err.println("invalid fasta element [" + header + "]");
 			return null;
 		}
+		seq.trimToSize();
 		return new FASTAElementImpl(header, seq);
 	}
 
