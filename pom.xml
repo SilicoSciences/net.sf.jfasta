@@ -6,7 +6,7 @@
 	<groupId>net.sf.jfasta</groupId>
 	<artifactId>jfasta</artifactId>
 	<name>JFASTA</name>
-	<version>1.1.0</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<description>Java implementation for the FASTA file format.</description>
 	<url>http://jfasta.sourceforge.net/</url>
 	<developers>
