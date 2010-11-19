@@ -6,7 +6,7 @@
 	<groupId>net.sf.jfasta</groupId>
 	<artifactId>jfasta</artifactId>
 	<name>JFASTA</name>
-	<version>1.1.0</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<description>Java implementation for the FASTA file format.</description>
 	<url>http://jfasta.sourceforge.net/</url>
 	<developers>
@@ -164,7 +164,7 @@
 							<check>
 								<branchRate>60</branchRate>
 								<lineRate>60</lineRate>
-								<haltOnFailure>false</haltOnFailure>
+								<haltOnFailure>true</haltOnFailure>
 								<totalBranchRate>60</totalBranchRate>
 								<totalLineRate>60</totalLineRate>
 								<packageLineRate>60</packageLineRate>
