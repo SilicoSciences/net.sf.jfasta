@@ -22,9 +22,9 @@ import java.io.InputStream;
 import java.io.Reader;
 
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.commons.io.IOUtils;
-import net.sf.kerner.commons.io.buffered.AbstractBufferedReader;
-import net.sf.kerner.commons.io.buffered.BufferedStringReader;
+import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.buffered.AbstractBufferedReader;
+import net.sf.kerner.utils.io.buffered.impl.BufferedStringReader;
 
 class FASTASequenceReader extends AbstractBufferedReader {
 

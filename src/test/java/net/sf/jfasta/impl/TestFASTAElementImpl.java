@@ -3,7 +3,8 @@
  */
 package net.sf.jfasta.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.commons.io.IOUtils;
+import net.sf.kerner.utils.io.IOUtils;
 
 import org.junit.After;
 import org.junit.AfterClass;

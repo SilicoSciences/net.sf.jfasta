@@ -14,7 +14,7 @@ import java.io.StringReader;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFileReader;
-import net.sf.kerner.commons.io.IOUtils;
+import net.sf.kerner.utils.io.IOUtils;
 
 import org.junit.After;
 import org.junit.AfterClass;

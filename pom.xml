@@ -52,9 +52,9 @@
 	</distributionManagement>
 	<dependencies>
 		<dependency>
-			<groupId>net.sf.kerner-commons</groupId>
-			<artifactId>kerner-commons</artifactId>
-			<version>0.10.0</version>
+			<groupId>net.sf.kerner-utils</groupId>
+			<artifactId>io</artifactId>
+			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

@@ -25,7 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import net.sf.jfasta.FASTAElement;
-import net.sf.kerner.commons.io.impl.AbstractIOIterator;
+import net.sf.kerner.utils.io.impl.AbstractIOIterator;
 
 public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 

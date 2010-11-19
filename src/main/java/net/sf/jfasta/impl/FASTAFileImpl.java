@@ -22,8 +22,8 @@ import java.util.NoSuchElementException;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.commons.Utils;
-import net.sf.kerner.commons.io.IOUtils;
+import net.sf.kerner.utils.Utils;
+import net.sf.kerner.utils.io.IOUtils;
 
 public class FASTAFileImpl implements FASTAFile {
 	

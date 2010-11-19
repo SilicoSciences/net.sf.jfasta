@@ -22,8 +22,8 @@ import java.util.Map.Entry;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.commons.StringUtils;
-import net.sf.kerner.commons.io.IOUtils;
+import net.sf.jfasta.Utils;
+import net.sf.kerner.utils.io.IOUtils;
 
 public class FASTAElementImpl implements FASTAElement {
 
@@ -114,7 +114,7 @@ public class FASTAElementImpl implements FASTAElement {
 		sb.append(FASTAFile.HEADER_IDENT);
 		sb.append(getHeader(includeMethaInfo));
 		sb.append(IOUtils.NEW_LINE_STRING);
-		sb.append(StringUtils.formatStringToMultiLinesStrings(getSequence(),
+		sb.append(Utils.formatStringToMultiLinesStrings(getSequence(),
 				lineLength));
 		return sb.toString();
 	}

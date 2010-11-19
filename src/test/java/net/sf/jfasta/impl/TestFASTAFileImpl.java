@@ -3,13 +3,16 @@
  */
 package net.sf.jfasta.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.commons.io.IOUtils;
+import net.sf.kerner.utils.io.IOUtils;
 
 import org.junit.After;
 import org.junit.AfterClass;

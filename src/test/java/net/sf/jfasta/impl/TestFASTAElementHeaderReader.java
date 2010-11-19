@@ -10,7 +10,7 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.io.StringReader;
 
-import net.sf.kerner.commons.io.IOUtils;
+import net.sf.kerner.utils.io.IOUtils;
 
 import org.junit.After;
 import org.junit.AfterClass;

@@ -22,8 +22,8 @@ import java.io.Writer;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.commons.io.ObjectWriter;
-import net.sf.kerner.commons.io.buffered.AbstractBufferedWriter;
+import net.sf.kerner.utils.io.ObjectWriter;
+import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
 
 public class FASTAFileWriter extends AbstractBufferedWriter implements ObjectWriter<FASTAFile> {
 

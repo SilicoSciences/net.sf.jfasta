@@ -18,7 +18,7 @@ package net.sf.jfasta;
 import java.io.IOException;
 
 import net.sf.jfasta.impl.FASTAElementIterator;
-import net.sf.kerner.commons.io.buffered.IOIterable;
+import net.sf.kerner.utils.io.buffered.IOIterable;
 
 /**
  * A {@code FASTAFileReader} is used to read a FASTA file.

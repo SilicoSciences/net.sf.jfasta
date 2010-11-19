@@ -16,9 +16,8 @@ import java.util.List;
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
 import net.sf.jfasta.FASTAFileReader;
-import net.sf.kerner.commons.io.IOUtils;
-import net.sf.kerner.commons.logging.Log;
-import net.sf.kerner.commons.monitor.TimePeriod;
+import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.time.TimePeriod;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -26,6 +25,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -36,7 +37,7 @@ import org.junit.Test;
  */
 public class TestFASTAFileReaderImpl {
 
-	private Log log = new Log(TestFASTAFileReaderImpl.class);
+	private Logger log = LoggerFactory.getLogger(TestFASTAFileReaderImpl.class);
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -155,6 +156,7 @@ public class TestFASTAFileReaderImpl {
 		final File file = new File("src/test/resources/seq.100m.txt");
 		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE_STRICT);
 		long start = System.currentTimeMillis();
+		@SuppressWarnings("unused")
 		final FASTAFile fasta = reader.read();
 		long stop = System.currentTimeMillis();
 		
@@ -172,6 +174,7 @@ public class TestFASTAFileReaderImpl {
 		final File file = new File("src/test/resources/seq.100m.txt");
 		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_STRICT);
 		long start = System.currentTimeMillis();
+		@SuppressWarnings("unused")
 		final FASTAFile fasta = reader.read();
 		long stop = System.currentTimeMillis();
 		
@@ -189,6 +192,7 @@ public class TestFASTAFileReaderImpl {
 		final File file = new File("src/test/resources/seq.100m.txt");
 		final FASTAFileReader reader = new FASTAFileReaderImpl(file);
 		long start = System.currentTimeMillis();
+		@SuppressWarnings("unused")
 		final FASTAFile fasta = reader.read();
 		long stop = System.currentTimeMillis();
 		

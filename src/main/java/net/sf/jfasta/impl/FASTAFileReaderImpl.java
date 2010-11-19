@@ -26,7 +26,7 @@ import java.util.LinkedHashSet;
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
 import net.sf.jfasta.FASTAFileReader;
-import net.sf.kerner.commons.io.buffered.AbstractBufferedReader;
+import net.sf.kerner.utils.io.buffered.AbstractBufferedReader;
 
 /**
  * 
