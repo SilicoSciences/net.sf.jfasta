@@ -17,7 +17,6 @@ import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
 import net.sf.jfasta.FASTAFileReader;
 import net.sf.kerner.utils.io.IOUtils;
-import net.sf.kerner.utils.time.TimePeriod;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -160,7 +159,7 @@ public class TestFASTAFileReaderImpl {
 		final FASTAFile fasta = reader.read();
 		long stop = System.currentTimeMillis();
 		
-		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (including content checking case insensitive)");
+//		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (including content checking case insensitive)");
 
 	}
 	
@@ -178,7 +177,7 @@ public class TestFASTAFileReaderImpl {
 		final FASTAFile fasta = reader.read();
 		long stop = System.currentTimeMillis();
 		
-		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (including content checking case sensitive)");
+//		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (including content checking case sensitive)");
 
 	}
 	
@@ -196,7 +195,7 @@ public class TestFASTAFileReaderImpl {
 		final FASTAFile fasta = reader.read();
 		long stop = System.currentTimeMillis();
 		
-		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (without content checking)");
+//		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (without content checking)");
 
 	}
 	

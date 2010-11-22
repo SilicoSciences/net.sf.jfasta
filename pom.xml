@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<properties>
-		<jdk.version>1.5</jdk.version>
-	</properties>
 	<groupId>net.sf.jfasta</groupId>
 	<artifactId>jfasta</artifactId>
 	<name>JFASTA</name>
 	<version>1.1.1-SNAPSHOT</version>
 	<description>Java implementation for the FASTA file format.</description>
 	<url>http://jfasta.sourceforge.net/</url>
+	<properties>
+		<jdk.version>1.5</jdk.version>
+	</properties>
 	<developers>
 		<developer>
 			<id>kerner</id>
@@ -50,6 +50,17 @@
 			</url>
 		</snapshotRepository>
 	</distributionManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.kerner-utils</groupId>
@@ -69,17 +80,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 	<profiles>
 		<profile>
 			<id>doc</id>
@@ -161,19 +161,22 @@
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>cobertura-maven-plugin</artifactId>
 						<configuration>
+							<formats>
+								<format>html</format>
+								<format>xml</format>
+							</formats>
 							<check>
-								<branchRate>60</branchRate>
-								<lineRate>60</lineRate>
+								<lineRate>70</lineRate>
 								<haltOnFailure>false</haltOnFailure>
-								<totalBranchRate>60</totalBranchRate>
-								<totalLineRate>60</totalLineRate>
-								<packageLineRate>60</packageLineRate>
-								<packageBranchRate>60</packageBranchRate>
+								<totalLineRate>70</totalLineRate>
+								<packageLineRate>70</packageLineRate>
 							</check>
 							<instrumentation>
 								<ignores>
+									<ignore>*Exception.class</ignore>
 								</ignores>
 								<excludes>
+									<exclude>*Exception.class</exclude>
 								</excludes>
 							</instrumentation>
 						</configuration>

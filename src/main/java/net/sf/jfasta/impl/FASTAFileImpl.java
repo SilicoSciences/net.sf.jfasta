@@ -22,7 +22,7 @@ import java.util.NoSuchElementException;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.utils.Utils;
+import net.sf.jfasta.Utils;
 import net.sf.kerner.utils.io.IOUtils;
 
 public class FASTAFileImpl implements FASTAFile {
@@ -86,7 +86,8 @@ public class FASTAFileImpl implements FASTAFile {
 	}
 	
 	public FASTAElement getElementByHeader(String header) {
-		Utils.checkForNull(header);
+		if(header == null)
+			throw new NullPointerException();
 		for (FASTAElement e : elements) {
 			if (e.getHeader().equals(header)) {
 				return e;
