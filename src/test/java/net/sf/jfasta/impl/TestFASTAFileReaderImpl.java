@@ -150,10 +150,10 @@ public class TestFASTAFileReaderImpl {
 	public final void testRead03() throws IOException {
 		final File file = new File("src/test/resources/seq.100m.txt");
 		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE_STRICT);
-		long start = System.currentTimeMillis();
+//		long start = System.currentTimeMillis();
 		@SuppressWarnings("unused")
 		final FASTAFile fasta = reader.read();
-		long stop = System.currentTimeMillis();
+//		long stop = System.currentTimeMillis();
 		
 //		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (including content checking case insensitive)");
 
@@ -168,10 +168,10 @@ public class TestFASTAFileReaderImpl {
 	public final void testRead04() throws IOException {
 		final File file = new File("src/test/resources/seq.100m.txt");
 		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_STRICT);
-		long start = System.currentTimeMillis();
+//		long start = System.currentTimeMillis();
 		@SuppressWarnings("unused")
 		final FASTAFile fasta = reader.read();
-		long stop = System.currentTimeMillis();
+//		long stop = System.currentTimeMillis();
 		
 //		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (including content checking case sensitive)");
 
@@ -186,10 +186,10 @@ public class TestFASTAFileReaderImpl {
 	public final void testRead05() throws IOException {
 		final File file = new File("src/test/resources/seq.100m.txt");
 		final FASTAFileReader reader = new FASTAFileReaderImpl(file);
-		long start = System.currentTimeMillis();
+//		long start = System.currentTimeMillis();
 		@SuppressWarnings("unused")
 		final FASTAFile fasta = reader.read();
-		long stop = System.currentTimeMillis();
+//		long stop = System.currentTimeMillis();
 		
 //		log.debug("reading 5MB fasta file took " + new TimePeriod(start, stop).getDuration() + "ms (without content checking)");
 
