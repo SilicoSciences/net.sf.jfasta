@@ -93,7 +93,7 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 			}
 			header = header.substring(0, start-1);
 		}
-
+		
 		final StringBuilder seq = getSequence();
 		if (seq == null) {
 			System.err.println("invalid fasta element [" + header + "]");
@@ -107,10 +107,4 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 	private StringBuilder getSequence() throws IOException {
 		return new FASTASequenceReader(super.reader, alphabet).all();
 	}
-
-	public FASTAElement next(int bufferSize) throws IOException {
-		// TODO ignoring bufferSize
-		return next();
-	}
-
 }
