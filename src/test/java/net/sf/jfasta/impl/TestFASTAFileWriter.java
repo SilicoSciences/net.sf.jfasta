@@ -26,18 +26,19 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-11-30
- *
+ * 
  */
 public class TestFASTAFileWriter {
-	
+
 	private FASTAFileWriter writer;
-	
+
 	private StringWriter out;
-	
-	private final static File file = new File("src/test/resources/fasta.out.fasta");
+
+	private final static File file = new File(
+			"src/test/resources/fasta.out.fasta");
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -58,8 +59,10 @@ public class TestFASTAFileWriter {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jfasta.impl.FASTAFileWriter#FASTAFileWriter(java.io.File)}.
-	 * @throws IOException 
+	 * Test method for
+	 * {@link net.sf.jfasta.impl.FASTAFileWriter#FASTAFileWriter(java.io.File)}.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
 	public final void testFASTAFileWriterFile() throws IOException {
@@ -67,16 +70,22 @@ public class TestFASTAFileWriter {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jfasta.impl.FASTAFileWriter#FASTAFileWriter(java.io.OutputStream)}.
-	 * @throws FileNotFoundException 
+	 * Test method for
+	 * {@link net.sf.jfasta.impl.FASTAFileWriter#FASTAFileWriter(java.io.OutputStream)}
+	 * .
+	 * 
+	 * @throws FileNotFoundException
 	 */
 	@Test
-	public final void testFASTAFileWriterOutputStream() throws FileNotFoundException {
+	public final void testFASTAFileWriterOutputStream()
+			throws FileNotFoundException {
 		writer = new FASTAFileWriter(new FileOutputStream(file));
 	}
 
 	/**
-	 * Test method for {@link net.sf.jfasta.impl.FASTAFileWriter#FASTAFileWriter(java.io.Writer)}.
+	 * Test method for
+	 * {@link net.sf.jfasta.impl.FASTAFileWriter#FASTAFileWriter(java.io.Writer)}
+	 * .
 	 */
 	@Test
 	public final void testFASTAFileWriterWriter() {
@@ -84,8 +93,11 @@ public class TestFASTAFileWriter {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAFile)}.
-	 * @throws IOException 
+	 * Test method for
+	 * {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAFile)}
+	 * .
+	 * 
+	 * @throws IOException
 	 */
 	@Test
 	public final void testWriteFASTAFile() throws IOException {
@@ -93,21 +105,27 @@ public class TestFASTAFileWriter {
 		FASTAFile f = new FASTAFileImpl(e);
 		writer.write(f);
 		writer.close();
-		assertEquals(f.toString(), out.toString());
+		assertEquals(f.toString() + IOUtils.NEW_LINE_STRING, out.toString());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAFile)}.
-	 * @throws IOException 
+	 * Test method for
+	 * {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAFile)}
+	 * .
+	 * 
+	 * @throws IOException
 	 */
-	@Test(expected=NullPointerException.class)
+	@Test(expected = NullPointerException.class)
 	public final void testWriteFASTAFile01() throws IOException {
-		writer.write((FASTAFile)null);
+		writer.write((FASTAFile) null);
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAFile)}.
-	 * @throws IOException 
+	 * Test method for
+	 * {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAFile)}
+	 * .
+	 * 
+	 * @throws IOException
 	 */
 	@Test
 	public final void testWriteFASTAFile02() throws IOException {
@@ -116,12 +134,15 @@ public class TestFASTAFileWriter {
 		FASTAFile f = new FASTAFileImpl(Arrays.asList(e1, e2));
 		writer.write(f);
 		writer.close();
-		assertEquals(f.toString(), out.toString());
+		assertEquals(f.toString() + IOUtils.NEW_LINE_STRING, out.toString());
 	}
 
 	/**
-	 * Test method for {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAElement)}.
-	 * @throws IOException 
+	 * Test method for
+	 * {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAElement)}
+	 * .
+	 * 
+	 * @throws IOException
 	 */
 	@Test
 	public final void testWriteFASTAElement() throws IOException {
@@ -130,10 +151,13 @@ public class TestFASTAFileWriter {
 		writer.flush();
 		assertEquals(e1.toString() + IOUtils.NEW_LINE_STRING, out.toString());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAElement)}.
-	 * @throws IOException 
+	 * Test method for
+	 * {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAElement)}
+	 * .
+	 * 
+	 * @throws IOException
 	 */
 	@Test
 	public final void testWriteFASTAElement01() throws IOException {
@@ -142,40 +166,77 @@ public class TestFASTAFileWriter {
 		writer.write(e1);
 		writer.write(e2);
 		writer.flush();
-		assertEquals(new FASTAFileImpl(Arrays.asList(e1, e2)).toString()  + IOUtils.NEW_LINE_STRING , out.toString());
+		assertEquals(new FASTAFileImpl(Arrays.asList(e1, e2)).toString()
+				+ IOUtils.NEW_LINE_STRING, out.toString());
 	}
-	
+
 	// START SNIPPET: example_3
-	
+
 	/**
-	 * Test method for {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAElement)}.
-	 * @throws IOException 
+	 * Test method for
+	 * {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAElement)}
+	 * .
+	 * 
+	 * @throws IOException
 	 */
 	@Test
 	public final void testExample03() throws IOException {
-		
+
 		// Write a FASTA file element by element
-		
+
 		FASTAElement e1 = new FASTAElementImpl("header", "seq");
 		FASTAElement e2 = new FASTAElementImpl("header2", "seq2");
 		FASTAElement e3 = new FASTAElementImpl("head", "atgc");
-		
+
 		List<FASTAElement> elements = Arrays.asList(e1, e2, e3);
-		
+
 		FASTAFileWriter writer = new FASTAFileWriter(out);
-		
-		for(FASTAElement e : elements){
+
+		for (FASTAElement e : elements) {
 			writer.write(e);
 		}
 		writer.close();
-		
-		assertEquals(new FASTAFileImpl(elements).toString()  + IOUtils.NEW_LINE_STRING , out.toString());
+
+		assertEquals(new FASTAFileImpl(elements).toString()
+				+ IOUtils.NEW_LINE_STRING, out.toString());
 	}
-	
+
 	// END SNIPPET: example_3
 
+	// START SNIPPET: example_4
+
 	/**
-	 * Test method for {@link net.sf.kerner.utils.io.buffered.AbstractBufferedWriter#close()}.
+	 * Test method for
+	 * {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAElement)}
+	 * .
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public final void testExample04() throws IOException {
+
+		// Write a FASTA file at once
+
+		FASTAElement e1 = new FASTAElementImpl("header", "seq");
+		FASTAElement e2 = new FASTAElementImpl("header2", "seq2");
+		FASTAElement e3 = new FASTAElementImpl("head", "atgc");
+
+		FASTAFile file = new FASTAFileImpl(Arrays.asList(e1, e2, e3));
+
+		FASTAFileWriter writer = new FASTAFileWriter(out);
+
+		writer.write(file);
+
+		writer.close();
+
+		assertEquals(file.toString() + IOUtils.NEW_LINE_STRING, out.toString());
+	}
+
+	// END SNIPPET: example_4
+
+	/**
+	 * Test method for
+	 * {@link net.sf.kerner.utils.io.buffered.AbstractBufferedWriter#close()}.
 	 */
 	@Test
 	@Ignore
@@ -184,7 +245,8 @@ public class TestFASTAFileWriter {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.utils.io.buffered.AbstractBufferedWriter#flush()}.
+	 * Test method for
+	 * {@link net.sf.kerner.utils.io.buffered.AbstractBufferedWriter#flush()}.
 	 */
 	@Test
 	@Ignore
