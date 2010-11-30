@@ -22,6 +22,7 @@ import java.io.Writer;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
+import net.sf.kerner.utils.io.IOUtils;
 import net.sf.kerner.utils.io.ObjectWriter;
 import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
 
@@ -122,5 +123,6 @@ public class FASTAFileWriter extends AbstractBufferedWriter implements
 	 */
 	public synchronized void write(FASTAElement e) throws IOException {
 		super.writer.write(e.toString());
+		super.writer.write(IOUtils.NEW_LINE_STRING);
 	}
 }
