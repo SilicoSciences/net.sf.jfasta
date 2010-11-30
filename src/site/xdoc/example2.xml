@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="JFASTA">
+<document>
+	<properties>
+		<author email="alex.kerner.24@googlemail.com">Alexander Kerner</author>
+		<title>Java Implementation for the FASTA format</title>
+	</properties>
+	<head>
+		<meta />
+	</head>
 	<body>
 	
 	<head>
@@ -17,17 +24,19 @@ piwikTracker.enableLinkTracking();
 <!-- End Piwik Tag -->
 	</head>
 	
-		<menu name="Overview">
-			<item name="Introduction" href="index.html" />
-			<item name="Download"
-				href="http://sourceforge.net/projects/jfasta/files/" />
-			<item name="JavaDoc"
-				href="http://jfasta.sourceforge.net/apidocs/index.html" />
-		</menu>
-		<menu name="Examples">
-			<item name="Read in a multi FASTA file" href="example1.html" />
-			<item name="Write a multi FASTA file" href="example2.html" />
-		</menu>
-		<menu ref="reports" />
+		<section name="Example3: Write a multi FASTA file">
+			<macro name="snippet">
+				<param name="id" value="example_3" />
+				<param name="file"
+					value="src/test/java/net/sf/jfasta/impl/TestFASTAFileWriter.java" />
+			</macro>
+		</section>
+		<section name="Example4: Write a multi FASTA file">
+			<macro name="snippet">
+				<param name="id" value="example_4" />
+				<param name="file"
+					value="src/test/java/net/sf/jfasta/impl/TestFASTAFileWriter.java" />
+			</macro>
+		</section>
 	</body>
-</project>
+</document>
