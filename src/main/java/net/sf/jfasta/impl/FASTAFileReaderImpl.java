@@ -122,7 +122,7 @@ public class FASTAFileReaderImpl extends AbstractBufferedReader implements
 	 * Build a new {@code FASTAFileReaderImpl}. this {@code FASTAFileReaderImpl}
 	 * will not perform any sequence validation.
 	 * 
-	 * @param file
+	 * @param stream
 	 *            stream from which is read
 	 */
 	public FASTAFileReaderImpl(InputStream stream) {

@@ -41,7 +41,7 @@ public interface FASTAFile extends Serializable, Cloneable, Set<FASTAElement> {
 	/**
 	 * Default number of characters to write to one line. After writing
 	 * {@link #DEFAULT_LINE_LENGTH} characters, a
-	 * {@link net.sf.kerner.commons.io.IOUtils#NEW_LINE_STRING NEW_LINE_STRING}
+	 * {@link net.sf.kerner.utils.io.IOUtils#NEW_LINE_STRING NEW_LINE_STRING}
 	 * will be appended.
 	 */
 	public static final int DEFAULT_LINE_LENGTH = 80;
