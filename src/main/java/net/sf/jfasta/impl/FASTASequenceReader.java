@@ -101,6 +101,12 @@ class FASTASequenceReader extends AbstractBufferedReader {
 			if (Character.isWhitespace(c))
 				continue;
 
+			// seq end reached
+			if (c == FASTAFile.HEADER_IDENT) {
+				super.reader.reset();
+				break;
+			}
+
 			if (alphabet != null) {
 				// check validity
 				boolean ok = false;
@@ -111,19 +117,14 @@ class FASTASequenceReader extends AbstractBufferedReader {
 						break;
 					}
 				}
-				if(!ok)
-					throw new IllegalArgumentException("Illegal character [" + c + "]");
+				if (!ok)
+					throw new IllegalArgumentException("Illegal character ["
+							+ c + "]");
 			}
-
-			// seq end reached
-			if (c == FASTAFile.HEADER_IDENT) {
-				super.reader.reset();
-				break;
-			}
-
-			else
-				result.append(c);
+			
+			result.append(c);
 		}
+
 		if (result.length() < 1)
 			return null;
 		return result;
