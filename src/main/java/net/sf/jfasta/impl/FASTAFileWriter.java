@@ -112,6 +112,7 @@ public class FASTAFileWriter extends AbstractBufferedWriter implements
 	 */
 	public synchronized void write(FASTAFile e) throws IOException {
 		super.writer.write(e.toString());
+		super.writer.write(IOUtils.NEW_LINE_STRING);
 	}
 
 	/**
