@@ -4,7 +4,6 @@
 package net.sf.jfasta.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -171,21 +170,6 @@ public class TestFASTAElementIterator {
 		while (it.hasNext()) {
 			assertEquals("ATGC", it.next().getSequence());
 		}
-	}
-	
-	/**
-	 * Test method for {@link net.sf.jfasta.impl.FASTAElementIterator#next()}.
-	 * 
-	 * @throws IOException
-	 */
-	@Test
-	public final void testNext01() throws IOException {
-		final String in = ">header";
-
-		final FASTAElementIterator it = new FASTAFileReaderImpl(
-				new StringReader(in)).getIterator();
-
-			assertFalse(it.hasNext());
 	}
 	
 	/**

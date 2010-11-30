@@ -169,7 +169,7 @@ public class TestFASTAFileWriter {
 		}
 		writer.close();
 		
-		assertEquals(new FASTAFileImpl(Arrays.asList(e1, e2)).toString()  + IOUtils.NEW_LINE_STRING , out.toString());
+		assertEquals(new FASTAFileImpl(elements).toString()  + IOUtils.NEW_LINE_STRING , out.toString());
 	}
 	
 	// END SNIPPET: example_3

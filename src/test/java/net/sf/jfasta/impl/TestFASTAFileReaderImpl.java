@@ -149,7 +149,7 @@ public class TestFASTAFileReaderImpl {
 	@Test
 	public final void testRead03() throws IOException {
 		final File file = new File("src/test/resources/seq.100m.txt");
-		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE_STRICT);
+		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE);
 //		long start = System.currentTimeMillis();
 		@SuppressWarnings("unused")
 		final FASTAFile fasta = reader.read();
@@ -167,7 +167,7 @@ public class TestFASTAFileReaderImpl {
 	@Test
 	public final void testRead04() throws IOException {
 		final File file = new File("src/test/resources/seq.100m.txt");
-		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_STRICT);
+		final FASTAFileReader reader = new FASTAFileReaderImpl(file, FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE);
 //		long start = System.currentTimeMillis();
 		@SuppressWarnings("unused")
 		final FASTAFile fasta = reader.read();
