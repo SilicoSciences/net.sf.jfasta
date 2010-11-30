@@ -3,16 +3,16 @@
  */
 package net.sf.jfasta.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.List;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
@@ -144,6 +144,35 @@ public class TestFASTAFileWriter {
 		writer.flush();
 		assertEquals(new FASTAFileImpl(Arrays.asList(e1, e2)).toString()  + IOUtils.NEW_LINE_STRING , out.toString());
 	}
+	
+	// START SNIPPET: example_3
+	
+	/**
+	 * Test method for {@link net.sf.jfasta.impl.FASTAFileWriter#write(net.sf.jfasta.FASTAElement)}.
+	 * @throws IOException 
+	 */
+	@Test
+	public final void testExample03() throws IOException {
+		
+		// Write a FASTA file element by element
+		
+		FASTAElement e1 = new FASTAElementImpl("header", "seq");
+		FASTAElement e2 = new FASTAElementImpl("header2", "seq2");
+		FASTAElement e3 = new FASTAElementImpl("head", "atgc");
+		
+		List<FASTAElement> elements = Arrays.asList(e1, e2, e3);
+		
+		FASTAFileWriter writer = new FASTAFileWriter(out);
+		
+		for(FASTAElement e : elements){
+			writer.write(e);
+		}
+		writer.close();
+		
+		assertEquals(new FASTAFileImpl(Arrays.asList(e1, e2)).toString()  + IOUtils.NEW_LINE_STRING , out.toString());
+	}
+	
+	// END SNIPPET: example_3
 
 	/**
 	 * Test method for {@link net.sf.kerner.utils.io.buffered.AbstractBufferedWriter#close()}.

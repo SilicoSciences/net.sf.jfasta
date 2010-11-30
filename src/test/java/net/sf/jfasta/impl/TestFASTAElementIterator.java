@@ -233,7 +233,7 @@ public class TestFASTAElementIterator {
 	 * @throws IOException
 	 */
 	@Test
-	public final void testExample1() throws IOException {
+	public final void testExample01() throws IOException {
 
 		// Read a multi FASTA file element by element.
 
@@ -259,7 +259,7 @@ public class TestFASTAElementIterator {
 	 * @throws IOException
 	 */
 	@Test
-	public final void testExample2() throws IOException {
+	public final void testExample02() throws IOException {
 
 		// Read a multi FASTA file element by element. Throw an exception, if
 		// FASTA sequence contains characters that are invalid for a DNA
