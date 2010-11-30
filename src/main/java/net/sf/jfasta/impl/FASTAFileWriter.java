@@ -39,11 +39,11 @@ public class FASTAFileWriter extends AbstractBufferedWriter implements ObjectWri
 		super(writer);
 	}
 
-	public void write(FASTAFile e) throws IOException {
+	public synchronized void write(FASTAFile e) throws IOException {
 		super.writer.write(e.toString());
 	}
 	
-	public void write(FASTAElement e) throws IOException {
+	public synchronized void write(FASTAElement e) throws IOException {
 		super.writer.write(e.toString());
 	}
 }
