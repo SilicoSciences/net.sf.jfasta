@@ -114,7 +114,7 @@ public class TestFASTAFileReaderImpl {
 		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC";
 		final FASTAFile fasta = new FASTAFileReaderImpl(new StringReader(in))
 				.read();
-
+		
 		assertEquals(1, fasta.size());
 		final List<FASTAElement> elements = new ArrayList<FASTAElement>(fasta);
 		assertEquals("header", elements.get(0).getHeader());
