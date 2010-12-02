@@ -42,18 +42,6 @@
 			<url>sftp://frs.sourceforge.net:/home/groups/j/jf/jfasta/htdocs
 			</url>
 		</site>
-		<repository>
-			<id>sourceforge-jfasta</id>
-			<name>SourceForge jfasta</name>
-			<url>sftp://frs.sourceforge.net:/home/pfs/project/j/jf/jfasta/releases
-			</url>
-		</repository>
-		<snapshotRepository>
-			<id>sourceforge-jfasta</id>
-			<name>SourceForge jfasta</name>
-			<url>sftp://frs.sourceforge.net:/home/pfs/project/j/jf/jfasta/snapshots
-			</url>
-		</snapshotRepository>
 	</distributionManagement>
 	<build>
 		<plugins>
