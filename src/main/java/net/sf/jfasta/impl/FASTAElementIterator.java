@@ -29,90 +29,88 @@ import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 
 public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 
-	protected final char[] alphabet;
+    protected final char[] alphabet;
 
-	public FASTAElementIterator(BufferedReader reader) throws IOException {
-		super(reader);
-		super.read();
-		this.alphabet = null;
-	}
+    public FASTAElementIterator(final BufferedReader reader) throws IOException {
+        super(reader);
+        // super.read();
+        this.alphabet = null;
+    }
 
-	public FASTAElementIterator(File file) throws IOException {
-		super(file);
-		super.read();
-		this.alphabet = null;
-	}
+    public FASTAElementIterator(final BufferedReader reader, final char[] alphabet) throws IOException {
+        super(reader);
+        // super.read();
+        this.alphabet = alphabet;
+    }
 
-	public FASTAElementIterator(InputStream stream) throws IOException {
-		super(stream);
-		super.read();
-		this.alphabet = null;
-	}
+    public FASTAElementIterator(final File file) throws IOException {
+        super(file);
+        // super.read();
+        this.alphabet = null;
+    }
 
-	public FASTAElementIterator(Reader reader) throws IOException {
-		super(reader);
-		super.read();
-		this.alphabet = null;
-	}
+    public FASTAElementIterator(final File file, final char[] alphabet) throws IOException {
+        super(file);
+        // super.read();
+        this.alphabet = alphabet;
+    }
 
-	public FASTAElementIterator(BufferedReader reader, char[] alphabet)
-			throws IOException {
-		super(reader);
-		super.read();
-		this.alphabet = alphabet;
-	}
+    public FASTAElementIterator(final InputStream stream) throws IOException {
+        super(stream);
+        // super.read();
+        this.alphabet = null;
+    }
 
-	public FASTAElementIterator(File file, char[] alphabet) throws IOException {
-		super(file);
-		super.read();
-		this.alphabet = alphabet;
-	}
+    public FASTAElementIterator(final InputStream stream, final char[] alphabet) throws IOException {
+        super(stream);
+        // super.read();
+        this.alphabet = alphabet;
+    }
 
-	public FASTAElementIterator(InputStream stream, char[] alphabet)
-			throws IOException {
-		super(stream);
-		super.read();
-		this.alphabet = alphabet;
-	}
+    public FASTAElementIterator(final Reader reader) throws IOException {
+        super(reader);
+        // super.read();
+        this.alphabet = null;
+    }
 
-	public FASTAElementIterator(Reader reader, char[] alphabet)
-			throws IOException {
-		super(reader);
-		super.read();
-		this.alphabet = alphabet;
-	}
+    public FASTAElementIterator(final Reader reader, final char[] alphabet) throws IOException {
+        super(reader);
+        // super.read();
+        this.alphabet = alphabet;
+    }
 
-	protected FASTAElement doRead() throws IOException {
-		String header = new FASTAElementHeaderReader().read(super.reader);
-		if (header == null)
-			return null;
+    @Override
+    protected FASTAElement doRead() throws IOException {
+        String header = new FASTAElementHeaderReader().read(super.reader);
+        if (header == null)
+            return null;
 
-		final Map<String, Serializable> map = new LinkedHashMap<String, Serializable>();
-		
-		if (header.contains("[")) {
-			final int start = header.indexOf('[');
-			final int stop = header.indexOf(']');
-			final String meta = header.substring(start+1, stop);
-//			System.err.println(meta);
-			final String[] arr = meta.split(" ");
-			for (String a : arr) {
-				final String[] brr = a.split("=");
-				map.put(brr[0], brr[1]);
-			}
-			header = header.substring(0, start-1);
-		}
-		
-		final StringBuilder seq = getSequence();
-		if (seq == null) {
-			System.err.println("invalid fasta element [" + header + "]");
-			return null;
-		}
-		seq.trimToSize();
-		
-		return new FASTAElementImpl(header, seq, map);
-	}
+        final Map<String, Serializable> map = new LinkedHashMap<String, Serializable>();
 
-	private StringBuilder getSequence() throws IOException {
-		return new FASTASequenceReader(super.reader, alphabet).all();
-	}
+        if (header.contains("[")) {
+            final int start = header.indexOf('[');
+            final int stop = header.indexOf(']');
+            final String meta = header.substring(start + 1, stop);
+            // System.err.println(meta);
+            final String[] arr = meta.split(" ");
+            for (final String a : arr) {
+                final String[] brr = a.split("=");
+                map.put(brr[0], brr[1]);
+            }
+            header = header.substring(0, start - 1);
+        }
+
+        final StringBuilder seq = getSequence();
+        if (seq == null) {
+            System.err.println("invalid fasta element [" + header + "]");
+            return null;
+        }
+        seq.trimToSize();
+
+        return new FASTAElementImpl(header, seq, map);
+    }
+
+    private StringBuilder getSequence() throws IOException {
+        return new FASTASequenceReader(super.reader, alphabet).all();
+    }
 }

@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
-		<version>5</version>
+		<version>7</version>
 	</parent>
 	<groupId>net.sf.jfasta</groupId>
 	<artifactId>jfasta</artifactId>
@@ -18,7 +18,7 @@
 		<developer>
 			<id>kerner</id>
 			<name>Alexander Kerner</name>
-			<email>alex.kerner.24@googlemail.com</email>
+			<email>alexanderkerner24@gmail.com</email>
 			<roles>
 				<role>Project Manager</role>
 				<role>Architect</role>
@@ -32,9 +32,9 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>git://jfasta.git.sourceforge.net/gitroot/jfasta/jfasta</url>
-		<connection>scm:git:git://jfasta.git.sourceforge.net/gitroot/jfasta/jfasta</connection>
-		<developerConnection>scm:git:ssh://akerner@jfasta.git.sourceforge.net/gitroot/jfasta/jfasta</developerConnection>
+		<url>git://git.code.sf.net/p/jfasta/code</url>
+		<connection>scm:git:git://jgit.code.sf.net/p/jfasta/code</connection>
+		<developerConnection>scm:git:ssh://akerner@git.code.sf.net/p/jfasta/code</developerConnection>
 	</scm>
 	<distributionManagement>
 		<site>
@@ -47,10 +47,67 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>install</goal>
+						</goals>
+						<configuration>
+							<createChecksum>true</createChecksum>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>dist-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -58,126 +115,13 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-io</groupId>
 			<artifactId>kerner-utils-io</artifactId>
-			<version>0.2.0</version>
+			<version>0.4.2</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<profiles>
-		<profile>
-			<id>doc</id>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<configuration>
-							<source>${jdk.version}</source>
-							<target>${jdk.version}</target>
-						</configuration>
-					</plugin>
-					<plugin>
-						<artifactId>maven-install-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>install</goal>
-								</goals>
-								<configuration>
-									<createChecksum>true</createChecksum>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-source-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-install-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>install</goal>
-								</goals>
-								<configuration>
-									<createChecksum>true</createChecksum>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<configuration>
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
-						</configuration>
-						<executions>
-							<execution>
-								<id>dist-assembly</id>
-								<phase>package</phase>
-								<goals>
-									<goal>single</goal> <!-- that's all :) -->
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>cobertura-maven-plugin</artifactId>
-						<configuration>
-							<formats>
-								<format>html</format>
-								<format>xml</format>
-							</formats>
-							<check>
-								<lineRate>70</lineRate>
-								<haltOnFailure>false</haltOnFailure>
-								<totalLineRate>70</totalLineRate>
-								<packageLineRate>70</packageLineRate>
-							</check>
-							<instrumentation>
-								<ignores>
-									<ignore>*Exception.class</ignore>
-								</ignores>
-								<excludes>
-									<exclude>*Exception.class</exclude>
-								</excludes>
-							</instrumentation>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>clean</goal>
-									<goal>check</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>
