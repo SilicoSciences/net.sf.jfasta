@@ -47,7 +47,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>2.3.2</version>
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
@@ -115,7 +115,7 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-io</groupId>
 			<artifactId>kerner-utils-io</artifactId>
-			<version>0.4.2</version>
+			<version>0.4.3</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
