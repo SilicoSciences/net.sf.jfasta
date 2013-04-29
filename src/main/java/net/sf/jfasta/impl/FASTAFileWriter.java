@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -28,8 +28,8 @@ import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
 
 /**
  * 
- * A {@code FASTAFileWriter} writes {@link net.sf.jfasta.FASTAElement
- * FASTAElement}s and {@link net.sf.jfasta.FASTAFile FASTAFile}s to
+ * A {@code FASTAFileWriter} writes {@link FASTAElement FASTAElement}s and
+ * {@link FASTAFile FASTAFile}s to
  * <ul>
  * <li>
  * a {@link java.io.File}</li>
@@ -52,6 +52,10 @@ import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
  * </p>
  * 
  * <p>
+ * last reviewed: 2013-04-29
+ * </p>
+ * 
+ * <p>
  * {@code FASTAFileWriter} is thread save.
  * </p>
  * 
@@ -59,71 +63,70 @@ import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
  * @version 2010-11-30
  * 
  */
-public class FASTAFileWriter extends AbstractBufferedWriter implements
-		ObjectWriter<FASTAElement> {
+public class FASTAFileWriter extends AbstractBufferedWriter implements ObjectWriter<FASTAElement> {
 
-	/**
-	 * 
-	 * Create a {@code FASTAFileWriter} that writes to a file.
-	 * 
-	 * @param file
-	 *            file to write to
-	 * @throws IOException
-	 *             if file is not accessible
-	 */
-	public FASTAFileWriter(File file) throws IOException {
-		super(file);
-	}
+    /**
+     * 
+     * Creates a {@code FASTAFileWriter} that writes to a file.
+     * 
+     * @param file
+     *            file to write to
+     * @throws IOException
+     *             if file is not accessible
+     */
+    public FASTAFileWriter(final File file) throws IOException {
+        super(file);
+    }
 
-	/**
-	 * 
-	 * Create a {@code FASTAFileWriter} that writes to a stream.
-	 * 
-	 * @param stream
-	 *            output stream to write to
-	 */
-	public FASTAFileWriter(OutputStream stream) {
-		super(stream);
-	}
+    /**
+     * 
+     * Creates a {@code FASTAFileWriter} that writes to a stream.
+     * 
+     * @param stream
+     *            output stream to write to
+     */
+    public FASTAFileWriter(final OutputStream stream) {
+        super(stream);
+    }
 
-	/**
-	 * 
-	 * Create a {@code FASTAFileWriter} that writes to a writer.
-	 * 
-	 * @param writer
-	 *            writer to write to
-	 */
-	public FASTAFileWriter(Writer writer) {
-		super(writer);
-	}
+    /**
+     * 
+     * Creates a {@code FASTAFileWriter} that writes to a writer.
+     * 
+     * @param writer
+     *            writer to write to
+     */
+    public FASTAFileWriter(final Writer writer) {
+        super(writer);
+    }
 
-	/**
-	 * 
-	 * Write a {@link net.sf.jfasta.FASTAFile FASTAFile} at once.
-	 * <p>
-	 * <b> Note:</b> For big FASTA files, use {@link #write(FASTAElement)}
-	 * instead and write FASTA file element by element.
-	 * </p>
-	 * 
-	 * @param e
-	 *            FASTA file to write
-	 * @throws IOException
-	 *             if writing fails
-	 */
-	public synchronized void write(FASTAFile e) throws IOException {
-		super.writer.write(e.toString());
-		super.writer.write(IOUtils.NEW_LINE_STRING);
-	}
+    /**
+     * Writes a {@link FASTAElement FASTAElement}.
+     * <p>
+     * <b>Note:</b> For big FASTA elements, prepare for equivalent memory usage.
+     * </p>
+     * 
+     */
+    public synchronized void write(final FASTAElement e) throws IOException {
+        super.writer.write(e.toString());
+        super.writer.write(IOUtils.NEW_LINE_STRING);
+    }
 
-	/**
-	 * Write a {@link net.sf.jfasta.FASTAElement FASTAElement}.
-	 * <p>
-	 * <b>Note:</b> For big FASTA elements, prepare for equivalent memory usage.
-	 * </p>
-	 * 
-	 */
-	public synchronized void write(FASTAElement e) throws IOException {
-		super.writer.write(e.toString());
-		super.writer.write(IOUtils.NEW_LINE_STRING);
-	}
+    /**
+     * 
+     * Writes a {@link FASTAFile FASTAFile} at once.
+     * <p>
+     * <b> Note:</b> For big FASTA files, use {@link #write(FASTAElement)}
+     * instead and write FASTA file element by element.
+     * </p>
+     * 
+     * @param e
+     *            FASTA file to write
+     * @throws IOException
+     *             if writing fails
+     */
+    public synchronized void write(final FASTAFile e) throws IOException {
+        super.writer.write(e.toString());
+        super.writer.write(IOUtils.NEW_LINE_STRING);
+    }
 }

@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -36,6 +36,11 @@ import net.sf.kerner.utils.io.buffered.AbstractBufferedReader;
  * <b>Example:</b><br>
  * 
  * </p>
+ * 
+ * <p>
+ * last reviewed: 2013-04-29
+ * </p>
+ * 
  * <p>
  * 
  * <pre>
@@ -48,134 +53,131 @@ import net.sf.kerner.utils.io.buffered.AbstractBufferedReader;
  * @version 2010-11-06
  * 
  */
-public class FASTAFileReaderImpl extends AbstractBufferedReader implements
-		FASTAFileReader {
+public class FASTAFileReaderImpl extends AbstractBufferedReader implements FASTAFileReader {
 
-	/**
-	 * A default alphabet for DNA.
-	 * <p>
-	 * { 'A', 'a', 'T', 't','G', 'g', 'C', 'c', 'N', 'n' }
-	 * </p>
-	 */
-	public final static char[] DNA_ALPHABET_IGNORE_CASE = { 'A', 'a', 'T', 't',
-			'G', 'g', 'C', 'c', 'N', 'n' };
+    /**
+     * A default alphabet for DNA.
+     * <p>
+     * { 'A', 'a', 'T', 't','G', 'g', 'C', 'c', 'N', 'n' }
+     * </p>
+     */
+    public final static char[] DNA_ALPHABET_IGNORE_CASE = { 'A', 'a', 'T', 't', 'G', 'g', 'C', 'c', 'N', 'n' };
 
-	/**
-	 * A default alphabet for DNA.
-	 * <p>
-	 * { 'A', 'a', 'T', 't','G', 'g', 'C', 'c'}
-	 * </p>
-	 */
-	public final static char[] DNA_ALPHABET_IGNORE_CASE_STRICT = { 'A', 'a',
-			'T', 't', 'G', 'g', 'C', 'c' };
+    /**
+     * A default alphabet for DNA.
+     * <p>
+     * { 'A', 'a', 'T', 't','G', 'g', 'C', 'c'}
+     * </p>
+     */
+    public final static char[] DNA_ALPHABET_IGNORE_CASE_STRICT = { 'A', 'a', 'T', 't', 'G', 'g', 'C', 'c' };
 
-	/**
-	 * A default alphabet for DNA.
-	 * <p>
-	 * { 'A', 'T', 'G', 'C', 'N' }
-	 * </p>
-	 */
-	public final static char[] DNA_ALPHABET = { 'A', 'T', 'G', 'C', 'N' };
+    /**
+     * A default alphabet for DNA.
+     * <p>
+     * { 'A', 'T', 'G', 'C', 'N' }
+     * </p>
+     */
+    public final static char[] DNA_ALPHABET = { 'A', 'T', 'G', 'C', 'N' };
 
-	/**
-	 * A default alphabet for DNA.
-	 * <p>
-	 * { 'A', 'T', 'G', 'C' }
-	 * </p>
-	 */
-	public final static char[] DNA_ALPHABET_STRICT = { 'A', 'T', 'G', 'C' };
+    /**
+     * A default alphabet for DNA.
+     * <p>
+     * { 'A', 'T', 'G', 'C' }
+     * </p>
+     */
+    public final static char[] DNA_ALPHABET_STRICT = { 'A', 'T', 'G', 'C' };
 
-	/**
-	 * Alphabet that is used for sequence validity checking. If null, sequence
-	 * is not validated.
-	 */
-	protected final char[] alphabet;
+    /**
+     * Alphabet that is used for sequence validity checking. If null, sequence
+     * is not validated.
+     */
+    protected final char[] alphabet;
 
-	/**
-	 * 
-	 * Build a new {@code FASTAFileReaderImpl}. this {@code FASTAFileReaderImpl}
-	 * will not perform any sequence validation.
-	 * 
-	 * @param reader
-	 *            reader from which stream is read
-	 */
-	public FASTAFileReaderImpl(BufferedReader reader) {
-		super(reader);
-		this.alphabet = null;
-	}
+    /**
+     * 
+     * Builds a new {@code FASTAFileReaderImpl}. this
+     * {@code FASTAFileReaderImpl} will not perform any sequence validation.
+     * 
+     * @param reader
+     *            reader from which stream is read
+     */
+    public FASTAFileReaderImpl(final BufferedReader reader) {
+        super(reader);
+        alphabet = null;
+    }
 
-	/**
-	 * 
-	 * Build a new {@code FASTAFileReaderImpl}. this {@code FASTAFileReaderImpl}
-	 * will not perform any sequence validation.
-	 * 
-	 * @param file
-	 *            file from which stream is read
-	 */
-	public FASTAFileReaderImpl(File file) throws IOException {
-		super(file);
-		this.alphabet = null;
-	}
+    public FASTAFileReaderImpl(final BufferedReader reader, final char[] alphabet) {
+        super(reader);
+        this.alphabet = alphabet;
+    }
 
-	/**
-	 * 
-	 * Build a new {@code FASTAFileReaderImpl}. this {@code FASTAFileReaderImpl}
-	 * will not perform any sequence validation.
-	 * 
-	 * @param stream
-	 *            stream from which is read
-	 */
-	public FASTAFileReaderImpl(InputStream stream) {
-		super(stream);
-		this.alphabet = null;
-	}
+    /**
+     * 
+     * Builds a new {@code FASTAFileReaderImpl}. this
+     * {@code FASTAFileReaderImpl} will not perform any sequence validation.
+     * 
+     * @param file
+     *            file from which stream is read
+     */
+    public FASTAFileReaderImpl(final File file) throws IOException {
+        super(file);
+        alphabet = null;
+    }
 
-	/**
-	 * 
-	 * Build a new {@code FASTAFileReaderImpl}. this {@code FASTAFileReaderImpl}
-	 * will not perform any sequence validation.
-	 * 
-	 * @param reader
-	 *            reader from which stream is read
-	 */
-	public FASTAFileReaderImpl(Reader reader) {
-		super(reader);
-		this.alphabet = null;
-	}
+    public FASTAFileReaderImpl(final File file, final char[] alphabet) throws IOException {
+        super(file);
+        this.alphabet = alphabet;
+    }
 
-	public FASTAFileReaderImpl(Reader reader, char[] alphabet) {
-		super(reader);
-		this.alphabet = alphabet;
-	}
+    /**
+     * 
+     * Builds a new {@code FASTAFileReaderImpl}. this
+     * {@code FASTAFileReaderImpl} will not perform any sequence validation.
+     * 
+     * @param stream
+     *            stream from which is read
+     */
+    public FASTAFileReaderImpl(final InputStream stream) {
+        super(stream);
+        alphabet = null;
+    }
 
-	public FASTAFileReaderImpl(BufferedReader reader, char[] alphabet) {
-		super(reader);
-		this.alphabet = alphabet;
-	}
+    public FASTAFileReaderImpl(final InputStream stream, final char[] alphabet) {
+        super(stream);
+        this.alphabet = alphabet;
+    }
 
-	public FASTAFileReaderImpl(File file, char[] alphabet) throws IOException {
-		super(file);
-		this.alphabet = alphabet;
-	}
+    /**
+     * 
+     * Builds a new {@code FASTAFileReaderImpl}. this
+     * {@code FASTAFileReaderImpl} will not perform any sequence validation.
+     * 
+     * @param reader
+     *            reader from which stream is read
+     */
+    public FASTAFileReaderImpl(final Reader reader) {
+        super(reader);
+        alphabet = null;
+    }
 
-	public FASTAFileReaderImpl(InputStream stream, char[] alphabet) {
-		super(stream);
-		this.alphabet = alphabet;
-	}
+    public FASTAFileReaderImpl(final Reader reader, final char[] alphabet) {
+        super(reader);
+        this.alphabet = alphabet;
+    }
 
-	public FASTAElementIterator getIterator() throws IOException {
-		return new FASTAElementIterator(super.reader, alphabet);
-	}
+    public FASTAElementIterator getIterator() throws IOException {
+        return new FASTAElementIterator(super.reader, alphabet);
+    }
 
-	public FASTAFile read() throws IOException {
-		final Collection<FASTAElement> result = new LinkedHashSet<FASTAElement>();
-		FASTAElementIterator it = getIterator();
-		while (it.hasNext()) {
-			result.add(it.next());
-			// System.err.println("result now " + result);
-		}
-		it.close();
-		return new FASTAFileImpl(result);
-	}
+    public FASTAFile read() throws IOException {
+        final Collection<FASTAElement> result = new LinkedHashSet<FASTAElement>();
+        final FASTAElementIterator it = getIterator();
+        while (it.hasNext()) {
+            result.add(it.next());
+            // System.err.println("result now " + result);
+        }
+        it.close();
+        return new FASTAFileImpl(result);
+    }
 
 }
