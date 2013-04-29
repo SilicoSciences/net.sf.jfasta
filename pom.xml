@@ -145,7 +145,7 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-io</groupId>
 			<artifactId>kerner-utils-io</artifactId>
-			<version>0.4.3</version>
+			<version>0.4.5</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
