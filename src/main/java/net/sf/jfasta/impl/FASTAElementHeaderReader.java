@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -25,47 +25,70 @@ import net.sf.jfasta.FASTAFile;
 import net.sf.kerner.utils.io.IOUtils;
 import net.sf.kerner.utils.io.buffered.impl.BufferedStringReader;
 
+/**
+ * 
+ * TODO description
+ * 
+ * <p>
+ * <b>Example:</b><br>
+ * 
+ * </p>
+ * <p>
+ * 
+ * <pre>
+ * TODO example
+ * </pre>
+ * 
+ * </p>
+ * <p>
+ * last reviewed: 2013-04-29
+ * </p>
+ * 
+ * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
+ * @version 2013-04-29
+ * 
+ */
 class FASTAElementHeaderReader {
 
-	public String read(File file) throws IOException {
-		return read(IOUtils.getInputStreamFromFile(file));
-	}
+    /**
+     * 
+     * 
+     * Helper method to work on "same" BufferedReader.
+     * 
+     * @param reader
+     * @return header string or {@code null} if no
+     *         {@link FASTAFile.HEADER_IDENT} could be found
+     * @throws IOException
+     *             if anything goes wrong
+     */
+    public String read(final BufferedReader reader) throws IOException {
+        String s = reader.readLine();
+        if (s == null)
+            return null;
+        s = s.trim();
+        if (s.startsWith(Character.toString(FASTAFile.HEADER_IDENT)))
+            return s.substring(1);
+        System.err.println("failed to get header from " + s);
+        return null;
+    }
 
-	public String read(Reader reader) throws IOException {
-		String s = new BufferedStringReader(reader).nextLine();
-		if (s == null)
-			return null;
-		s = s.trim();		
-		if (s.startsWith(Character.toString(FASTAFile.HEADER_IDENT)))
-			return s.substring(1);
-		System.err.println("failed to get header from " + s);
-		return null;
-	}
+    public String read(final File file) throws IOException {
+        return read(IOUtils.getInputStreamFromFile(file));
+    }
 
-	/**
-	 * 
-	 * 
-	 * Helper method to work on "same" BufferedReader.
-	 * 
-	 * @param reader
-	 * @return header string or {@code null} if no
-	 *         {@link FASTAFile.HEADER_IDENT} could be found
-	 * @throws IOException
-	 *             if anything goes wrong
-	 */
-	public String read(BufferedReader reader) throws IOException {
-		String s = reader.readLine();
-		if (s == null)
-			return null;
-		s = s.trim();
-		if (s.startsWith(Character.toString(FASTAFile.HEADER_IDENT)))
-			return s.substring(1);
-		System.err.println("failed to get header from " + s);
-		return null;
-	}
+    public String read(final InputStream stream) throws IOException {
+        return read(IOUtils.inputStreamToReader(stream));
+    }
 
-	public String read(InputStream stream) throws IOException {
-		return read(IOUtils.inputStreamToReader(stream));
-	}
+    public String read(final Reader reader) throws IOException {
+        String s = new BufferedStringReader(reader).nextLine();
+        if (s == null)
+            return null;
+        s = s.trim();
+        if (s.startsWith(Character.toString(FASTAFile.HEADER_IDENT)))
+            return s.substring(1);
+        System.err.println("failed to get header from " + s);
+        return null;
+    }
 
 }
