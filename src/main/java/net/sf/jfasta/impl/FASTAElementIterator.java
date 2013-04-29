@@ -20,9 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import java.io.Serializable;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
@@ -104,24 +101,9 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 
     @Override
     protected FASTAElement doRead() throws IOException {
-        String header = new FASTAElementHeaderReader().read(super.reader);
+        final String header = new FASTAElementHeaderReader().read(super.reader);
         if (header == null)
             return null;
-
-        final Map<String, Serializable> map = new LinkedHashMap<String, Serializable>();
-
-        if (header.contains("[")) {
-            final int start = header.indexOf('[');
-            final int stop = header.indexOf(']');
-            final String meta = header.substring(start + 1, stop);
-            // System.err.println(meta);
-            final String[] arr = meta.split(" ");
-            for (final String a : arr) {
-                final String[] brr = a.split("=");
-                map.put(brr[0], brr[1]);
-            }
-            header = header.substring(0, start - 1);
-        }
 
         final StringBuilder seq = getSequence();
         if (seq == null) {
@@ -130,7 +112,7 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
         }
         seq.trimToSize();
 
-        return new FASTAElementImpl(header, seq, map);
+        return new FASTAElementImpl(header, seq);
     }
 
     private StringBuilder getSequence() throws IOException {

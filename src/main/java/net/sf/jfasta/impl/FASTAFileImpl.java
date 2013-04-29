@@ -256,15 +256,4 @@ public class FASTAFileImpl implements FASTAFile {
         }
         return sb.toString();
     }
-
-    public String toString(final boolean includeMethaInfo) {
-        final StringBuilder sb = new StringBuilder();
-        final Iterator<FASTAElement> it = elements.iterator();
-        while (it.hasNext()) {
-            sb.append(it.next().toString(includeMethaInfo));
-            if (it.hasNext())
-                sb.append(IOUtils.NEW_LINE_STRING);
-        }
-        return sb.toString();
-    }
 }
