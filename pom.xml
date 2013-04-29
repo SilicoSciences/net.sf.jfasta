@@ -11,6 +11,10 @@
 	<version>1.2.3-SNAPSHOT</version>
 	<description>Java implementation for the FASTA file format.</description>
 	<url>http://jfasta.sourceforge.net/</url>
+	<issueManagement>
+		<system>JIRA</system>
+		<url>http://akerner.de:8090/</url>
+	</issueManagement>
 	<properties>
 		<jdk.version>1.5</jdk.version>
 	</properties>
@@ -38,8 +42,8 @@
 	</scm>
 	<distributionManagement>
 		<site>
-			<id>sourceforge-jfasta</id>
-			<url>sftp://frs.sourceforge.net:/home/groups/j/jf/jfasta/htdocs
+			<id>sourceforge-kerner-utils</id>
+			<url>scp://shell.sourceforge.net/home/project-web/jfasta/htdocs
 			</url>
 		</site>
 	</distributionManagement>
