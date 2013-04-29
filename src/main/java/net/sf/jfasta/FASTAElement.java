@@ -56,19 +56,6 @@ public interface FASTAElement {
 
     /**
      * 
-     * Retrieves this {@code FASTAElement}'s header string. Meaning string
-     * starting right after {@link FASTAFile#HEADER_IDENT HEADER_IDENT} and
-     * continuing until first subsequent {@link IOUtils#NEW_LINE_STRING
-     * NEW_LINE_STRING}
-     * 
-     * @return this {@code FASTAElement}'s header string, including meta
-     *         information
-     * 
-     */
-    String getHeader(boolean includeMethaInfo);
-
-    /**
-     * 
      * Retrieves this {@code FASTAElement}'s default line length.
      * 
      * @return this {@code FASTAElement}'s default line length
@@ -102,18 +89,5 @@ public interface FASTAElement {
      *            the new default line length
      */
     void setLineLength(int length);
-
-    /**
-     * 
-     * Retrieves this {@code FASTAElement}'s string representation. Include meta
-     * informations in header line.
-     * 
-     * @param includeMethaInfo
-     *            include meta informations in header line if true, omit them if
-     *            false
-     * @return this {@code FASTAElement}'s string representation including meta
-     *         informations in header line
-     */
-    String toString(boolean includeMethaInfo);
 
 }

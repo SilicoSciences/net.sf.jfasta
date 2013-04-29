@@ -18,7 +18,6 @@ package net.sf.jfasta.impl;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
@@ -100,8 +99,6 @@ public class FASTAElementImpl implements FASTAElement {
         map.putAll(metainfo);
     }
 
-    // Override //
-
     public void clearMethaInfo() {
         map.clear();
     }
@@ -125,28 +122,6 @@ public class FASTAElementImpl implements FASTAElement {
 
     public String getHeader() {
         return header;
-    }
-
-    public String getHeader(final boolean includeMethaInfo) {
-        if (!includeMethaInfo)
-            return header;
-        final StringBuilder sb = new StringBuilder();
-        if (getMethaInfo().isEmpty()) {
-            return header;
-        }
-
-        sb.append(" ");
-        sb.append("[");
-        for (final Entry<String, Serializable> e : getMethaInfo().entrySet()) {
-            sb.append(e);
-            sb.append(" ");
-        }
-        // System.err.println(sb);
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append("]");
-        // System.err.println(sb);
-
-        return (header + sb.toString()).trim();
     }
 
     public int getLineLength() {
@@ -200,13 +175,9 @@ public class FASTAElementImpl implements FASTAElement {
 
     @Override
     public String toString() {
-        return toString(true);
-    }
-
-    public String toString(final boolean includeMethaInfo) {
         final StringBuilder sb = new StringBuilder();
         sb.append(FASTAFile.HEADER_IDENT);
-        sb.append(getHeader(includeMethaInfo));
+        sb.append(getHeader());
         sb.append(IOUtils.NEW_LINE_STRING);
         sb.append(Utils.formatStringToMultiLinesStrings(getSequence(), lineLength));
         return sb.toString();
