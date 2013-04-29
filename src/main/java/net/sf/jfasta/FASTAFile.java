@@ -103,14 +103,4 @@ public interface FASTAFile extends Serializable, Cloneable, Set<FASTAElement> {
      */
     void setLineLength(int len);
 
-    /**
-     * 
-     * Retrieves a String view representation of this {@code FASTAFile}.
-     * 
-     * @param includeMethaInfo
-     *            if true, include meta informations
-     * @return String view representation of this {@code FASTAFile}
-     */
-    String toString(boolean includeMethaInfo);
-
 }

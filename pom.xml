@@ -8,9 +8,13 @@
 	<groupId>net.sf.jfasta</groupId>
 	<artifactId>jfasta</artifactId>
 	<name>JFASTA</name>
-	<version>1.2.3-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<description>Java implementation for the FASTA file format.</description>
 	<url>http://jfasta.sourceforge.net/</url>
+	<issueManagement>
+		<system>JIRA</system>
+		<url>http://akerner.de:8090/</url>
+	</issueManagement>
 	<properties>
 		<jdk.version>1.5</jdk.version>
 	</properties>
@@ -38,16 +42,28 @@
 	</scm>
 	<distributionManagement>
 		<site>
-			<id>sourceforge-jfasta</id>
-			<url>sftp://frs.sourceforge.net:/home/groups/j/jf/jfasta/htdocs
+			<id>sourceforge-kerner-utils</id>
+			<url>scp://shell.sourceforge.net/home/project-web/jfasta/htdocs
 			</url>
 		</site>
 	</distributionManagement>
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.2</version>
+				<dependencies>
+					<dependency><!-- add support for ssh/scp -->
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-ssh</artifactId>
+						<version>1.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>2.3.2</version>
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
@@ -109,13 +125,27 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Bundle-Version>${parsedVersion.osgiVersion}</Bundle-Version>
+							<Bundle-Description>${project.description}</Bundle-Description>
+							<Implementation-Version>${project.version}</Implementation-Version>
+						</manifestEntries>
+						<manifestFile>META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.kerner-utils-io</groupId>
 			<artifactId>kerner-utils-io</artifactId>
-			<version>0.4.2</version>
+			<version>0.4.5</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
