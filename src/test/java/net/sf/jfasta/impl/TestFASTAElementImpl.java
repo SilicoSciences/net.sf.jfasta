@@ -249,17 +249,6 @@ public class TestFASTAElementImpl {
     }
 
     /**
-     * Test method for {@link net.sf.jfasta.impl.FASTAElementImpl#toString()}.
-     */
-    @Test
-    public final void testToString() {
-        final Map<String, Serializable> meta = new LinkedHashMap<String, Serializable>();
-        meta.put("meta", "value");
-        el = new FASTAElementImpl("header", "seq", meta);
-        assertEquals(">header [meta=value]" + IOUtils.NEW_LINE_STRING + el.getSequence(), el.toString());
-    }
-
-    /**
      * Test method for
      * {@link net.sf.jfasta.impl.FASTAElementImpl#toString(boolean)}.
      */
