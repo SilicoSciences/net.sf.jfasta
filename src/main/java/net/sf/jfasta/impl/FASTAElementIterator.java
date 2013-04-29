@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -27,6 +27,29 @@ import java.util.Map;
 import net.sf.jfasta.FASTAElement;
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 
+/**
+ * 
+ * TODO description
+ * 
+ * <p>
+ * <b>Example:</b><br>
+ * 
+ * </p>
+ * <p>
+ * 
+ * <pre>
+ * TODO example
+ * </pre>
+ * 
+ * </p>
+ * <p>
+ * last reviewed: 2013-04-29
+ * </p>
+ * 
+ * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
+ * @version 2013-04-29
+ * 
+ */
 public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
 
     protected final char[] alphabet;
@@ -34,7 +57,7 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
     public FASTAElementIterator(final BufferedReader reader) throws IOException {
         super(reader);
         // super.read();
-        this.alphabet = null;
+        alphabet = null;
     }
 
     public FASTAElementIterator(final BufferedReader reader, final char[] alphabet) throws IOException {
@@ -46,7 +69,7 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
     public FASTAElementIterator(final File file) throws IOException {
         super(file);
         // super.read();
-        this.alphabet = null;
+        alphabet = null;
     }
 
     public FASTAElementIterator(final File file, final char[] alphabet) throws IOException {
@@ -58,7 +81,7 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
     public FASTAElementIterator(final InputStream stream) throws IOException {
         super(stream);
         // super.read();
-        this.alphabet = null;
+        alphabet = null;
     }
 
     public FASTAElementIterator(final InputStream stream, final char[] alphabet) throws IOException {
@@ -70,7 +93,7 @@ public class FASTAElementIterator extends AbstractIOIterator<FASTAElement> {
     public FASTAElementIterator(final Reader reader) throws IOException {
         super(reader);
         // super.read();
-        this.alphabet = null;
+        alphabet = null;
     }
 
     public FASTAElementIterator(final Reader reader, final char[] alphabet) throws IOException {
