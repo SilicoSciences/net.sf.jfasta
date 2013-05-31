@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.io.Reader;
 
 import net.sf.jfasta.FASTAFile;
+import net.sf.kerner.utils.ExceptionFileFormat;
 import net.sf.kerner.utils.io.IOUtils;
 import net.sf.kerner.utils.io.buffered.impl.BufferedStringReader;
 
@@ -41,11 +42,11 @@ import net.sf.kerner.utils.io.buffered.impl.BufferedStringReader;
  * 
  * </p>
  * <p>
- * last reviewed: 2013-04-29
+ * last reviewed: 2013-05-29
  * </p>
  * 
  * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
- * @version 2013-04-29
+ * @version 2013-05-29
  * 
  */
 class FASTAElementHeaderReader {
@@ -53,13 +54,17 @@ class FASTAElementHeaderReader {
     /**
      * 
      * 
-     * Helper method to work on "same" BufferedReader.
+     * Helper method to work on "same" {@link BufferedReader}. <br>
+     * {@link BufferedReader} is not closed after return.
+     * 
      * 
      * @param reader
-     * @return header string or {@code null} if no
-     *         {@link FASTAFile.HEADER_IDENT} could be found
+     *            {@link BufferedReader} to use
+     * @return header string
      * @throws IOException
      *             if anything goes wrong
+     * @throws ExceptionFileFormat
+     *             if FASTA header could not be found
      */
     public String read(final BufferedReader reader) throws IOException {
         String s = reader.readLine();
@@ -68,8 +73,7 @@ class FASTAElementHeaderReader {
         s = s.trim();
         if (s.startsWith(Character.toString(FASTAFile.HEADER_IDENT)))
             return s.substring(1);
-        System.err.println("failed to get header from " + s);
-        return null;
+        throw new ExceptionFileFormat("failed to get header from " + s);
     }
 
     public String read(final File file) throws IOException {
@@ -81,14 +85,20 @@ class FASTAElementHeaderReader {
     }
 
     public String read(final Reader reader) throws IOException {
-        String s = new BufferedStringReader(reader).nextLine();
-        if (s == null)
-            return null;
-        s = s.trim();
-        if (s.startsWith(Character.toString(FASTAFile.HEADER_IDENT)))
-            return s.substring(1);
-        System.err.println("failed to get header from " + s);
-        return null;
+        BufferedStringReader reader2 = null;
+        try {
+            reader2 = new BufferedStringReader(reader);
+            String s = reader2.nextLine();
+            if (s == null) {
+                return null;
+            }
+            s = s.trim();
+            if (s.startsWith(Character.toString(FASTAFile.HEADER_IDENT)))
+                return s.substring(1);
+            throw new ExceptionFileFormat("failed to get header from " + s);
+        } finally {
+            if (reader2 != null)
+                reader2.close();
+        }
     }
-
 }
