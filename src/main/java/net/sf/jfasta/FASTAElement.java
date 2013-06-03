@@ -15,7 +15,7 @@ limitations under the License.
 
 package net.sf.jfasta;
 
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 /**
  * A {@code FASTAElement} represents one entry in a (multi) fasta file.
@@ -47,7 +47,7 @@ public interface FASTAElement {
      * 
      * Retrieves this {@code FASTAElement}'s header string. Meaning string
      * starting right after {@link FASTAFile#HEADER_IDENT HEADER_IDENT} and
-     * continuing until first subsequent {@link IOUtils#NEW_LINE_STRING
+     * continuing until first subsequent {@link UtilIO#NEW_LINE_STRING
      * NEW_LINE_STRING}
      * 
      * @return this {@code FASTAElement}'s header string
@@ -82,7 +82,7 @@ public interface FASTAElement {
      * Sets this {@code FASTAElement}'s default line length. When invoking
      * toString() or {@link #toString(boolean)} after {@code length} characters
      * written to one line, a
-     * {@link net.sf.kerner.utils.io.IOUtils#NEW_LINE_STRING NEW_LINE_STRING}
+     * {@link net.sf.kerner.utils.io.UtilIO#NEW_LINE_STRING NEW_LINE_STRING}
      * will be appended.
      * 
      * @param length

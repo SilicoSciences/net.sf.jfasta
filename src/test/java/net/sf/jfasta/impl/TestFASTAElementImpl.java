@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -218,7 +218,7 @@ public class TestFASTAElementImpl {
     public final void testSetLineLength01() {
         el = new FASTAElementImpl("header", "seq");
         el.setLineLength(2);
-        assertEquals(">header" + IOUtils.NEW_LINE_STRING + "se" + IOUtils.NEW_LINE_STRING + "q", el.toString());
+        assertEquals(">header" + UtilIO.NEW_LINE_STRING + "se" + UtilIO.NEW_LINE_STRING + "q", el.toString());
     }
 
     /**
@@ -257,7 +257,7 @@ public class TestFASTAElementImpl {
         final Map<String, Serializable> meta = new LinkedHashMap<String, Serializable>();
         meta.put("meta", "value");
         el = new FASTAElementImpl("header", "seq", meta);
-        assertEquals(">header" + IOUtils.NEW_LINE_STRING + el.getSequence(), el.toString());
+        assertEquals(">header" + UtilIO.NEW_LINE_STRING + el.getSequence(), el.toString());
     }
 
 }

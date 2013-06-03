@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.io.Reader;
 
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 import net.sf.kerner.utils.io.buffered.AbstractBufferedReader;
 import net.sf.kerner.utils.io.buffered.impl.BufferedStringReader;
 
@@ -99,7 +99,7 @@ class FASTASequenceReader extends AbstractBufferedReader {
      * Reads in sequence until sequence is complete, using default buffer size.
      */
     public StringBuilder all() throws IOException {
-        return all(IOUtils.DEFAULT_BUFFER);
+        return all(UtilIO.DEFAULT_BUFFER);
     }
 
     /**
@@ -117,7 +117,7 @@ class FASTASequenceReader extends AbstractBufferedReader {
     }
 
     public synchronized StringBuilder nextChars() throws IOException {
-        return nextChars(IOUtils.DEFAULT_BUFFER);
+        return nextChars(UtilIO.DEFAULT_BUFFER);
     }
 
     /**

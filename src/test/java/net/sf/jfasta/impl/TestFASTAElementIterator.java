@@ -13,7 +13,7 @@ import java.io.StringReader;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFileReader;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -194,8 +194,8 @@ public class TestFASTAElementIterator {
      */
     @Test
     public final void testNext() throws IOException {
-        final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC" + IOUtils.NEW_LINE_STRING + ">header2"
-                + IOUtils.NEW_LINE_STRING + "ATGC";
+        final String in = ">header" + UtilIO.NEW_LINE_STRING + "ATGC" + UtilIO.NEW_LINE_STRING + ">header2"
+                + UtilIO.NEW_LINE_STRING + "ATGC";
 
         final FASTAElementIterator it = new FASTAFileReaderImpl(new StringReader(in)).getIterator();
 

@@ -10,7 +10,7 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.io.StringReader;
 
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -61,7 +61,7 @@ public class TestFASTAElementHeaderReader {
 	 */
 	@Test
 	public final void testReadReader() throws IOException {
-		final String result = reader.read(new StringReader(">bla" + IOUtils.NEW_LINE_STRING));
+		final String result = reader.read(new StringReader(">bla" + UtilIO.NEW_LINE_STRING));
 		assertEquals("bla", result);
 	}
 	

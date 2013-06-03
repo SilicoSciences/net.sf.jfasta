@@ -22,7 +22,7 @@ import java.io.Writer;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 import net.sf.kerner.utils.io.ObjectWriter;
 import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
 
@@ -109,7 +109,7 @@ public class FASTAFileWriter extends AbstractBufferedWriter implements ObjectWri
      */
     public synchronized void write(final FASTAElement e) throws IOException {
         super.writer.write(e.toString());
-        super.writer.write(IOUtils.NEW_LINE_STRING);
+        super.writer.write(UtilIO.NEW_LINE_STRING);
     }
 
     /**
@@ -127,6 +127,6 @@ public class FASTAFileWriter extends AbstractBufferedWriter implements ObjectWri
      */
     public synchronized void write(final FASTAFile e) throws IOException {
         super.writer.write(e.toString());
-        super.writer.write(IOUtils.NEW_LINE_STRING);
+        super.writer.write(UtilIO.NEW_LINE_STRING);
     }
 }

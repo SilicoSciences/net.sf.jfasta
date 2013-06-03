@@ -16,7 +16,7 @@ import java.util.List;
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
 import net.sf.jfasta.FASTAFileReader;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -111,7 +111,7 @@ public class TestFASTAFileReaderImpl {
 	 */
 	@Test
 	public final void testRead() throws IOException {
-		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC";
+		final String in = ">header" + UtilIO.NEW_LINE_STRING + "ATGC";
 		final FASTAFile fasta = new FASTAFileReaderImpl(new StringReader(in))
 				.read();
 		
@@ -129,9 +129,9 @@ public class TestFASTAFileReaderImpl {
 	 */
 	@Test
 	public final void testRead01() throws IOException {
-		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC"
-				+ IOUtils.NEW_LINE_STRING + ">header2"
-				+ IOUtils.NEW_LINE_STRING + "AA";
+		final String in = ">header" + UtilIO.NEW_LINE_STRING + "ATGC"
+				+ UtilIO.NEW_LINE_STRING + ">header2"
+				+ UtilIO.NEW_LINE_STRING + "AA";
 		final FASTAFile fasta = new FASTAFileReaderImpl(new StringReader(in))
 				.read();
 
@@ -202,9 +202,9 @@ public class TestFASTAFileReaderImpl {
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public final void testRead06() throws IOException {
-		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC"
-				+ IOUtils.NEW_LINE_STRING + ">header2"
-				+ IOUtils.NEW_LINE_STRING + "AX";
+		final String in = ">header" + UtilIO.NEW_LINE_STRING + "ATGC"
+				+ UtilIO.NEW_LINE_STRING + ">header2"
+				+ UtilIO.NEW_LINE_STRING + "AX";
 		new FASTAFileReaderImpl(new StringReader(in),FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE_STRICT)
 				.read();
 	}

@@ -22,7 +22,7 @@ import java.util.NoSuchElementException;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 /**
  * 
@@ -251,7 +251,7 @@ public class FASTAFileImpl implements FASTAFile {
         while (it.hasNext()) {
             sb.append(it.next());
             if (it.hasNext()) {
-                sb.append(IOUtils.NEW_LINE_STRING);
+                sb.append(UtilIO.NEW_LINE_STRING);
             }
         }
         return sb.toString();

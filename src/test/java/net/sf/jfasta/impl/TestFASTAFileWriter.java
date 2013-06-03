@@ -16,7 +16,7 @@ import java.util.List;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -105,7 +105,7 @@ public class TestFASTAFileWriter {
 		FASTAFile f = new FASTAFileImpl(e);
 		writer.write(f);
 		writer.close();
-		assertEquals(f.toString() + IOUtils.NEW_LINE_STRING, out.toString());
+		assertEquals(f.toString() + UtilIO.NEW_LINE_STRING, out.toString());
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class TestFASTAFileWriter {
 		FASTAFile f = new FASTAFileImpl(Arrays.asList(e1, e2));
 		writer.write(f);
 		writer.close();
-		assertEquals(f.toString() + IOUtils.NEW_LINE_STRING, out.toString());
+		assertEquals(f.toString() + UtilIO.NEW_LINE_STRING, out.toString());
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class TestFASTAFileWriter {
 		FASTAElement e1 = new FASTAElementImpl("header", "seq");
 		writer.write(e1);
 		writer.flush();
-		assertEquals(e1.toString() + IOUtils.NEW_LINE_STRING, out.toString());
+		assertEquals(e1.toString() + UtilIO.NEW_LINE_STRING, out.toString());
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class TestFASTAFileWriter {
 		writer.write(e2);
 		writer.flush();
 		assertEquals(new FASTAFileImpl(Arrays.asList(e1, e2)).toString()
-				+ IOUtils.NEW_LINE_STRING, out.toString());
+				+ UtilIO.NEW_LINE_STRING, out.toString());
 	}
 
 	// START SNIPPET: example_3
@@ -198,7 +198,7 @@ public class TestFASTAFileWriter {
 		writer.close();
 
 		assertEquals(new FASTAFileImpl(elements).toString()
-				+ IOUtils.NEW_LINE_STRING, out.toString());
+				+ UtilIO.NEW_LINE_STRING, out.toString());
 	}
 
 	// END SNIPPET: example_3
@@ -229,7 +229,7 @@ public class TestFASTAFileWriter {
 
 		writer.close();
 
-		assertEquals(file.toString() + IOUtils.NEW_LINE_STRING, out.toString());
+		assertEquals(file.toString() + UtilIO.NEW_LINE_STRING, out.toString());
 	}
 
 	// END SNIPPET: example_4

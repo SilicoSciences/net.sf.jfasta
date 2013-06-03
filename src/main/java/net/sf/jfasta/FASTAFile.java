@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 /**
  * 
@@ -48,7 +48,7 @@ public interface FASTAFile extends Serializable, Cloneable, Set<FASTAElement> {
     /**
      * Default number of characters to write to one line. After writing
      * {@link #DEFAULT_LINE_LENGTH} characters, a
-     * {@link IOUtils#NEW_LINE_STRING NEW_LINE_STRING} will be appended.
+     * {@link UtilIO#NEW_LINE_STRING NEW_LINE_STRING} will be appended.
      */
     public static final int DEFAULT_LINE_LENGTH = 80;
 

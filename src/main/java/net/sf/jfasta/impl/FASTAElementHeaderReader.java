@@ -23,7 +23,7 @@ import java.io.Reader;
 
 import net.sf.jfasta.FASTAFile;
 import net.sf.kerner.utils.ExceptionFileFormat;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 import net.sf.kerner.utils.io.buffered.impl.BufferedStringReader;
 
 /**
@@ -77,11 +77,11 @@ class FASTAElementHeaderReader {
     }
 
     public String read(final File file) throws IOException {
-        return read(IOUtils.getInputStreamFromFile(file));
+        return read(UtilIO.getInputStreamFromFile(file));
     }
 
     public String read(final InputStream stream) throws IOException {
-        return read(IOUtils.inputStreamToReader(stream));
+        return read(UtilIO.inputStreamToReader(stream));
     }
 
     public String read(final Reader reader) throws IOException {
