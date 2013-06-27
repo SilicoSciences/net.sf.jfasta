@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: JFASTA
 Bundle-SymbolicName: jfasta
-Bundle-Version: 2.1.0
-Export-Package: net.sf.jfasta;version="2.1.0",
- net.sf.jfasta.impl;version="2.1.0"
+Bundle-Version: 2.1.1.qualifier
+Export-Package: net.sf.jfasta;version="2.1.1.qualifier",
+ net.sf.jfasta.impl;version="2.1.1.qualifier"
 Import-Package: net.sf.kerner.utils;version="0.18.1.qualifier",
  net.sf.kerner.utils.io;version="0.4.6.qualifier",
  net.sf.kerner.utils.io.buffered,
