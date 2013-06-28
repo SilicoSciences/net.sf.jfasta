@@ -30,6 +30,13 @@ public class TestHeaderDialectUniprot {
     }
 
     @Test
+    public final void testGetAccessions01() {
+        dia.setHeaderString(">sp|Q13085|ACACA_HUMAN Acetyl-CoA carboxylase 2 OS=Homo sapiens GN=ACACA PE=1 SV=2");
+        System.err.println(dia.getAccessions());
+        assertEquals("sp|Q13085|ACACA_HUMAN", dia.getAccessions());
+    }
+
+    @Test
     public final void testGetGeneName01() {
         dia.setHeaderString(">sp|Q13085|ACACA_HUMAN Acetyl-CoA carboxylase 1 OS=Homo sapiens GN=ACACA PE=1 SV=2");
         assertEquals("ACACA", dia.getGeneName());

@@ -12,7 +12,7 @@ public class HeaderDialectUniprot implements HeaderDialect {
 
     private final static Logger log = LoggerFactory.getLogger(HeaderDialectUniprot.class);
 
-    public final static String regex = ".*\\|([^\\s]+)\\|.*OS=(.+).*GN=([^\\s]+).*";
+    public final static String regex = ".*?([^\\s]+)\\s+.*OS=(.+).*GN=([^\\s]+).*";
 
     private String headerString;
 
@@ -22,6 +22,20 @@ public class HeaderDialectUniprot implements HeaderDialect {
 
     public HeaderDialectUniprot(final String header) {
         setHeaderString(header);
+    }
+
+    public String getAccessions() {
+        final Pattern p = Pattern.compile(regex);
+        final Matcher m = p.matcher(getHeaderString());
+        final boolean b = m.matches();
+        if (b) {
+            return m.group(1).trim();
+        } else {
+            if (log.isInfoEnabled()) {
+                log.info("no accession for " + headerString);
+            }
+            return null;
+        }
     }
 
     public String getGeneName() {
@@ -58,7 +72,11 @@ public class HeaderDialectUniprot implements HeaderDialect {
     }
 
     public synchronized void setHeaderString(final String headerString) {
-        this.headerString = headerString;
+        if (headerString.startsWith(">")) {
+            this.headerString = headerString.substring(1, headerString.length());
+        } else {
+            this.headerString = headerString;
+        }
     }
 
 }
