@@ -32,13 +32,20 @@ public class TestHeaderDialectUniprot {
     @Test
     public final void testGetAccessions01() {
         dia.setHeaderString(">sp|Q13085|ACACA_HUMAN Acetyl-CoA carboxylase 2 OS=Homo sapiens GN=ACACA PE=1 SV=2");
-        System.err.println(dia.getAccessions());
         assertEquals("sp|Q13085|ACACA_HUMAN", dia.getAccessions());
+    }
+
+    @Test
+    public final void testGetAccessions02() {
+        dia.setHeaderString("sp|Q3UNZ8|QORL2_MOUSE Quinone oxidoreductase-like protein 2 OS=Mus musculus PE=2 SV=1");
+        System.err.println(dia.getAccessions());
+        assertEquals("sp|Q3UNZ8|QORL2_MOUSE", dia.getAccessions());
     }
 
     @Test
     public final void testGetGeneName01() {
         dia.setHeaderString(">sp|Q13085|ACACA_HUMAN Acetyl-CoA carboxylase 1 OS=Homo sapiens GN=ACACA PE=1 SV=2");
+        System.err.println(dia.getGeneName());
         assertEquals("ACACA", dia.getGeneName());
     }
 
