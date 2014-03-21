@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.io.Reader;
 
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.utils.ExceptionFileFormat;
+import net.sf.kerner.utils.exception.ExceptionFileFormat;
 import net.sf.kerner.utils.io.UtilIO;
 import net.sf.kerner.utils.io.buffered.impl.BufferedStringReader;
 

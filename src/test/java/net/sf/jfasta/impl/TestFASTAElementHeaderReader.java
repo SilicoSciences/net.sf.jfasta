@@ -10,7 +10,7 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.io.StringReader;
 
-import net.sf.kerner.utils.ExceptionFileFormat;
+import net.sf.kerner.utils.exception.ExceptionFileFormat;
 import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
