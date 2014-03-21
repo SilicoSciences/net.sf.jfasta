@@ -14,7 +14,7 @@
 	<url>http://jfasta.sourceforge.net/</url>
 	<issueManagement>
 		<system>JIRA</system>
-		<url>http://akerner.de:8090/</url>
+		<url>http://akerner.de:8090/browse/JFASTA</url>
 	</issueManagement>
 	<properties>
 		<jdk.version>1.5</jdk.version>
