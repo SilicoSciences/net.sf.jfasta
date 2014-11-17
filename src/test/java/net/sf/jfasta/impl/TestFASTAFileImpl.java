@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2014 Alexander Kerner. All rights reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 /**
  * 
  */
@@ -12,7 +27,7 @@ import java.util.Arrays;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -305,8 +320,8 @@ public class TestFASTAFileImpl {
         el1 = new FASTAElementImpl("header", "seq");
         el2 = new FASTAElementImpl("header2", "seqq");
         file1 = new FASTAFileImpl(Arrays.asList(el1, el2));
-        assertEquals(">header" + IOUtils.NEW_LINE_STRING + "seq" + IOUtils.NEW_LINE_STRING + ">header2"
-                + IOUtils.NEW_LINE_STRING + "seqq", file1.toString());
+        assertEquals(">header" + UtilIO.NEW_LINE_STRING + "seq" + UtilIO.NEW_LINE_STRING + ">header2"
+                + UtilIO.NEW_LINE_STRING + "seqq", file1.toString());
     }
 
     /**
@@ -318,8 +333,8 @@ public class TestFASTAFileImpl {
         el1 = new FASTAElementImpl("header", "seq");
         el2 = new FASTAElementImpl("header2", "seqq");
         file1 = new FASTAFileImpl(Arrays.asList(el1, el2));
-        assertEquals(">header" + IOUtils.NEW_LINE_STRING + "seq" + IOUtils.NEW_LINE_STRING + ">header2"
-                + IOUtils.NEW_LINE_STRING + "seqq", file1.toString());
+        assertEquals(">header" + UtilIO.NEW_LINE_STRING + "seq" + UtilIO.NEW_LINE_STRING + ">header2"
+                + UtilIO.NEW_LINE_STRING + "seqq", file1.toString());
     }
 
 }

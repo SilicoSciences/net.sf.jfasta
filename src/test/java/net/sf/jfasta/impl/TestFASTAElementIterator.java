@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2014 Alexander Kerner. All rights reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 /**
  * 
  */
@@ -5,7 +20,6 @@ package net.sf.jfasta.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,19 +27,18 @@ import java.io.StringReader;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFileReader;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * 
- * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2013-04-29
+ * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
+ * @version 2013-07-02
  * 
  */
 public class TestFASTAElementIterator {
@@ -46,14 +59,12 @@ public class TestFASTAElementIterator {
     public void tearDown() throws Exception {
     }
 
-    @Test
-    @Ignore
-    public final void testDoRead() {
-        fail("Not yet implemented"); // TODO
-    }
-
     // START SNIPPET: example_1
 
+    /**
+     * 
+     * @throws IOException
+     */
     @Test
     public final void testExample01() throws IOException {
 
@@ -73,11 +84,6 @@ public class TestFASTAElementIterator {
 
     // END SNIPPET: example_1
 
-    /**
-     * Test method for {@link net.sf.jfasta.impl.FASTAElementIterator#next()}.
-     * 
-     * @throws IOException
-     */
     @Test
     public final void testExample02() throws IOException {
 
@@ -97,105 +103,16 @@ public class TestFASTAElementIterator {
         }
     }
 
-    // END SNIPPET: example_2
+    // START SNIPPET: example_2
 
     /**
-     * Test method for
-     * {@link net.sf.jfasta.impl.FASTAElementIterator#FASTAElementIterator(java.io.BufferedReader)}
-     * .
-     */
-    @Test
-    @Ignore
-    public final void testFASTAElementIteratorBufferedReader() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    /**
-     * Test method for
-     * {@link net.sf.jfasta.impl.FASTAElementIterator#FASTAElementIterator(java.io.BufferedReader, char[])}
-     * .
-     */
-    @Test
-    @Ignore
-    public final void testFASTAElementIteratorBufferedReaderCharArray() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    /**
-     * Test method for
-     * {@link net.sf.jfasta.impl.FASTAElementIterator#FASTAElementIterator(java.io.File)}
-     * .
-     */
-    @Test
-    @Ignore
-    public final void testFASTAElementIteratorFile() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    /**
-     * Test method for
-     * {@link net.sf.jfasta.impl.FASTAElementIterator#FASTAElementIterator(java.io.File, char[])}
-     * .
-     */
-    @Test
-    @Ignore
-    public final void testFASTAElementIteratorFileCharArray() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    /**
-     * Test method for
-     * {@link net.sf.jfasta.impl.FASTAElementIterator#FASTAElementIterator(java.io.InputStream)}
-     * .
-     */
-    @Test
-    @Ignore
-    public final void testFASTAElementIteratorInputStream() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    /**
-     * Test method for
-     * {@link net.sf.jfasta.impl.FASTAElementIterator#FASTAElementIterator(java.io.InputStream, char[])}
-     * .
-     */
-    @Test
-    @Ignore
-    public final void testFASTAElementIteratorInputStreamCharArray() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    /**
-     * Test method for
-     * {@link net.sf.jfasta.impl.FASTAElementIterator#FASTAElementIterator(java.io.Reader)}
-     * .
-     */
-    @Test
-    @Ignore
-    public final void testFASTAElementIteratorReader() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    /**
-     * Test method for
-     * {@link net.sf.jfasta.impl.FASTAElementIterator#FASTAElementIterator(java.io.Reader, char[])}
-     * .
-     */
-    @Test
-    @Ignore
-    public final void testFASTAElementIteratorReaderCharArray() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    /**
-     * Test method for {@link net.sf.jfasta.impl.FASTAElementIterator#next()}.
      * 
      * @throws IOException
      */
     @Test
     public final void testNext() throws IOException {
-        final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC" + IOUtils.NEW_LINE_STRING + ">header2"
-                + IOUtils.NEW_LINE_STRING + "ATGC";
+        final String in = ">header" + UtilIO.NEW_LINE_STRING + "ATGC" + UtilIO.NEW_LINE_STRING + ">header2"
+                + UtilIO.NEW_LINE_STRING + "ATGC";
 
         final FASTAElementIterator it = new FASTAFileReaderImpl(new StringReader(in)).getIterator();
 
@@ -204,13 +121,6 @@ public class TestFASTAElementIterator {
         }
     }
 
-    /**
-     * Test method for {@link net.sf.jfasta.impl.FASTAElementIterator#next(int)}
-     * .
-     */
-    @Test
-    @Ignore
-    public final void testNextInt() {
-        fail("Not yet implemented"); // TODO
-    }
+    // END SNIPPET: example_2
+
 }

@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2014 Alexander Kerner. All rights reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 /**
  * 
  */
@@ -11,7 +26,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -218,7 +233,7 @@ public class TestFASTAElementImpl {
     public final void testSetLineLength01() {
         el = new FASTAElementImpl("header", "seq");
         el.setLineLength(2);
-        assertEquals(">header" + IOUtils.NEW_LINE_STRING + "se" + IOUtils.NEW_LINE_STRING + "q", el.toString());
+        assertEquals(">header" + UtilIO.NEW_LINE_STRING + "se" + UtilIO.NEW_LINE_STRING + "q", el.toString());
     }
 
     /**
@@ -249,17 +264,6 @@ public class TestFASTAElementImpl {
     }
 
     /**
-     * Test method for {@link net.sf.jfasta.impl.FASTAElementImpl#toString()}.
-     */
-    @Test
-    public final void testToString() {
-        final Map<String, Serializable> meta = new LinkedHashMap<String, Serializable>();
-        meta.put("meta", "value");
-        el = new FASTAElementImpl("header", "seq", meta);
-        assertEquals(">header [meta=value]" + IOUtils.NEW_LINE_STRING + el.getSequence(), el.toString());
-    }
-
-    /**
      * Test method for
      * {@link net.sf.jfasta.impl.FASTAElementImpl#toString(boolean)}.
      */
@@ -268,7 +272,7 @@ public class TestFASTAElementImpl {
         final Map<String, Serializable> meta = new LinkedHashMap<String, Serializable>();
         meta.put("meta", "value");
         el = new FASTAElementImpl("header", "seq", meta);
-        assertEquals(">header" + IOUtils.NEW_LINE_STRING + el.getSequence(), el.toString());
+        assertEquals(">header" + UtilIO.NEW_LINE_STRING + el.getSequence(), el.toString());
     }
 
 }

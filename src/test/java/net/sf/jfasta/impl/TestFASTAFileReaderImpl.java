@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright (c) 2010-2014 Alexander Kerner. All rights reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 /**
  * 
  *
@@ -16,7 +31,7 @@ import java.util.List;
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
 import net.sf.jfasta.FASTAFileReader;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -111,7 +126,7 @@ public class TestFASTAFileReaderImpl {
 	 */
 	@Test
 	public final void testRead() throws IOException {
-		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC";
+		final String in = ">header" + UtilIO.NEW_LINE_STRING + "ATGC";
 		final FASTAFile fasta = new FASTAFileReaderImpl(new StringReader(in))
 				.read();
 		
@@ -129,9 +144,9 @@ public class TestFASTAFileReaderImpl {
 	 */
 	@Test
 	public final void testRead01() throws IOException {
-		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC"
-				+ IOUtils.NEW_LINE_STRING + ">header2"
-				+ IOUtils.NEW_LINE_STRING + "AA";
+		final String in = ">header" + UtilIO.NEW_LINE_STRING + "ATGC"
+				+ UtilIO.NEW_LINE_STRING + ">header2"
+				+ UtilIO.NEW_LINE_STRING + "AA";
 		final FASTAFile fasta = new FASTAFileReaderImpl(new StringReader(in))
 				.read();
 
@@ -202,9 +217,9 @@ public class TestFASTAFileReaderImpl {
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public final void testRead06() throws IOException {
-		final String in = ">header" + IOUtils.NEW_LINE_STRING + "ATGC"
-				+ IOUtils.NEW_LINE_STRING + ">header2"
-				+ IOUtils.NEW_LINE_STRING + "AX";
+		final String in = ">header" + UtilIO.NEW_LINE_STRING + "ATGC"
+				+ UtilIO.NEW_LINE_STRING + ">header2"
+				+ UtilIO.NEW_LINE_STRING + "AX";
 		new FASTAFileReaderImpl(new StringReader(in),FASTAFileReaderImpl.DNA_ALPHABET_IGNORE_CASE_STRICT)
 				.read();
 	}
