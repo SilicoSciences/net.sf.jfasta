@@ -22,8 +22,8 @@ import java.io.Writer;
 
 import net.sf.jfasta.FASTAElement;
 import net.sf.jfasta.FASTAFile;
-import net.sf.kerner.utils.io.UtilIO;
 import net.sf.kerner.utils.io.ObjectWriter;
+import net.sf.kerner.utils.io.UtilIO;
 import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
 
 /**
