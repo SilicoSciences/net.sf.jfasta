@@ -92,4 +92,10 @@ public class TestHeaderDialectUniprot {
         assertEquals("Homo sapiens", dia.getSpeciesName());
     }
 
+    @Test
+    public final void testGetSpeciesName02() {
+        dia.setHeaderString(">sp|P10599up4|THIO_HUMAN_UPS Thioredoxin Chain 2-105, N-terminal His tag OS=Homo sapiens GN=NotDefined");
+        assertEquals("Homo sapiens", dia.getSpeciesName());
+    }
+
 }
