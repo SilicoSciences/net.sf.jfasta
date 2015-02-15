@@ -69,9 +69,27 @@ public class TestHeaderDialectUniprot {
     }
 
     @Test
+    public final void testGetAccessionNumber05() {
+        dia.setHeaderString("m|P02768ups|ALBU_HUMAN_UPS Serum albumin (Chain 26-609) - Homo sapiens (Human)");
+        assertEquals("P02768ups", dia.getAccessionNumber());
+    }
+
+    @Test
+    public final void testGetAccessionNumber06() {
+        dia.setHeaderString("sp|Q99L13|3HIDH_MOUSE 3-hydroxyisobutyrate dehydrogenase, mitochondrial OS=Mus musculus GN=Hibadh PE=1 SV=1");
+        assertEquals("Q99L13", dia.getAccessionNumber());
+    }
+
+    @Test
     public final void testGetDBIdentifier01() {
         dia.setHeaderString("sp|Q3UNZ8|QORL2_MOUSE Quinone oxidoreductase-like protein 2 OS=Mus musculus PE=2 SV=1");
         assertEquals("sp", dia.getDBIdentifier());
+    }
+
+    @Test
+    public final void testGetGeneName01() {
+        dia.setHeaderString("sp|Q99L13|3HIDH_MOUSE 3-hydroxyisobutyrate dehydrogenase, mitochondrial OS=Mus musculus GN=Hibadh PE=1 SV=1");
+        assertEquals("3-hydroxyisobutyrate dehydrogenase, mitochondrial", dia.getProteinName());
     }
 
     @Test
@@ -84,6 +102,13 @@ public class TestHeaderDialectUniprot {
     public final void testGetProteinName01() {
         dia.setHeaderString("sp|Q3UNZ8|QORL2_MOUSE Quinone oxidoreductase-like protein 2 OS=Mus musculus PE=2 SV=1");
         assertEquals("Quinone oxidoreductase-like protein 2", dia.getProteinName());
+    }
+
+    @Test
+    public final void testGetProteinName02() {
+        dia.setHeaderString("m|P51965ups|UB2E1_HUMAN_UPS Ubiquitin-conjugating enzyme E2 E1 (Chain 1-193, N terminal His tag)OS=Homo sapiens (Human)");
+        assertEquals("Ubiquitin-conjugating enzyme E2 E1 (Chain 1-193, N terminal His tag)",
+                dia.getProteinName());
     }
 
     @Test
