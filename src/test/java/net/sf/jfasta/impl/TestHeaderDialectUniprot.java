@@ -70,7 +70,7 @@ public class TestHeaderDialectUniprot {
 
     @Test
     public final void testGetAccessionNumber05() {
-        dia.setHeaderString("m|P02768ups|ALBU_HUMAN_UPS Serum albumin (Chain 26-609) - Homo sapiens (Human)");
+        dia.setHeaderString("P02768ups|ALBU_HUMAN_UPS Serum albumin (Chain 26-609) - Homo sapiens (Human)");
         assertEquals("P02768ups", dia.getAccessionNumber());
     }
 
@@ -78,6 +78,12 @@ public class TestHeaderDialectUniprot {
     public final void testGetAccessionNumber06() {
         dia.setHeaderString("sp|Q99L13|3HIDH_MOUSE 3-hydroxyisobutyrate dehydrogenase, mitochondrial OS=Mus musculus GN=Hibadh PE=1 SV=1");
         assertEquals("Q99L13", dia.getAccessionNumber());
+    }
+
+    @Test
+    public final void testGetAccessionNumber07() {
+        dia.setHeaderString("P12081ups|SYHC_HUMAN_UPS Histidyl-tRNA synthetase, cytoplasmic (Chain 1-509, C terminal His tag) - Homo sapiens (Human)");
+        assertEquals("P12081ups", dia.getAccessionNumber());
     }
 
     @Test

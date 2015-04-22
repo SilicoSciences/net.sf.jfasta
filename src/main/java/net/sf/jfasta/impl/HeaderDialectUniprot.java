@@ -47,7 +47,7 @@ public class HeaderDialectUniprot implements HeaderDialect {
 
     public final static String REGEX_OS_GN = ".*OS=(.+)GN=(.+).*";
 
-    public final static String REGEX_ACC_ONLY = ".*\\|(.+)\\|.*";
+    public final static String REGEX_ACC_ONLY = "[sp\\|]*(.+)\\|.*";
 
     public final static String REGEX_DB_ONLY = ".*?(.*)\\|.*\\|.*";
 
