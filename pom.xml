@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
-		<version>7</version>
+		<version>9</version>
 	</parent>
 	<groupId>net.sf.jfasta</groupId>
 	<artifactId>jfasta</artifactId>
@@ -150,7 +150,7 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-io</groupId>
 			<artifactId>kerner-utils-io</artifactId>
-			<version>0.5.3-SNAPSHOT</version>
+			<version>0.5.3</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
