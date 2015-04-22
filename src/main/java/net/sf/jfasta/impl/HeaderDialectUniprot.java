@@ -19,6 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.sf.jfasta.HeaderDialect;
+import net.sf.kerner.utils.UtilString;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,11 +47,11 @@ public class HeaderDialectUniprot implements HeaderDialect {
 
     public final static String REGEX_OS_GN = ".*OS=(.+)GN=(.+).*";
 
-    public final static String REGEX_ACC_ONLY = ".*\\|(.+)\\|.*";
+    public final static String REGEX_ACC_ONLY = "[sp\\|]*(.+)\\|.*";
 
     public final static String REGEX_DB_ONLY = ".*?(.*)\\|.*\\|.*";
 
-    public final static String REGEX_PROTEIN_ONLY = ".+?[\\s+](.+)[\\s+]OS=.*";
+    public final static String REGEX_PROTEIN_ONLY = ".+?[\\s*](.+)\\s*(OS=.*)";
 
     public final static String REGEX_ACC_NAMES_OS_GN = "([^\\s]+)(.+)OS=(.+)GN=(.+).*";
 
@@ -84,7 +85,13 @@ public class HeaderDialectUniprot implements HeaderDialect {
     }
 
     public synchronized String getAccessionNumber() {
-        return getString(REGEX_ACC_ONLY);
+        final String result = getString(REGEX_ACC_ONLY);
+        if (UtilString.emptyString(result)) {
+            if (log.isInfoEnabled()) {
+                log.info("no accession number for " + headerString);
+            }
+        }
+        return result;
     }
 
     public synchronized String getDBIdentifier() {
@@ -92,7 +99,13 @@ public class HeaderDialectUniprot implements HeaderDialect {
     }
 
     public synchronized String getGeneName() {
-        return getString(REGEX_GN);
+        final String result = getString(REGEX_GN);
+        if (UtilString.emptyString(result)) {
+            if (log.isInfoEnabled()) {
+                log.info("no gene name for " + headerString);
+            }
+        }
+        return result;
 
     }
 
@@ -101,7 +114,13 @@ public class HeaderDialectUniprot implements HeaderDialect {
     }
 
     public synchronized String getProteinName() {
-        return getString(REGEX_PROTEIN_ONLY);
+        final String result = getString(REGEX_PROTEIN_ONLY);
+        if (UtilString.emptyString(result)) {
+            if (log.isInfoEnabled()) {
+                log.info("no protein name for " + headerString);
+            }
+        }
+        return result;
     }
 
     public String getSpeciesName() {
@@ -135,8 +154,8 @@ public class HeaderDialectUniprot implements HeaderDialect {
         if (b) {
             return m.group(1).trim();
         } else {
-            if (log.isInfoEnabled()) {
-                log.info("no match (" + regex + ") for " + getHeaderString());
+            if (log.isDebugEnabled()) {
+                log.debug("no match (" + regex + ") for " + getHeaderString());
             }
             return null;
         }
