@@ -2,14 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: JFASTA
 Bundle-SymbolicName: jfasta
-Bundle-Version: 2.2.0
-Export-Package: net.sf.jfasta;version="2.2.0",
- net.sf.jfasta.impl;version="2.2.0"
-Import-Package: net.sf.kerner.utils;version="0.19.0",
- net.sf.kerner.utils.exception;version="0.18.4",
- net.sf.kerner.utils.io;version="0.4.6",
- net.sf.kerner.utils.io.buffered,
- net.sf.kerner.utils.io.buffered.impl,
- org.junit;version="4.10.0";resolution:=optional,
+Bundle-Version: 2.2.1.qualifier
+Export-Package: net.sf.jfasta;version="2.2.1.qualifier",
+ net.sf.jfasta.impl;version="2.2.1.qualifier"
+Import-Package: org.junit;version="4.10.0";resolution:=optional,
  org.slf4j;version="1.7.2"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: net.sf.kerner-utils;bundle-version="1.2.3",
+ net.sf.kerner-utils-io;bundle-version="0.5.4"
